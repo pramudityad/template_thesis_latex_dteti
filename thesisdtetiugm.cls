@@ -26,6 +26,8 @@
 \RequirePackage{graphicx}
 \RequirePackage{calc}%Simple arithmetic lib
 \RequirePackage{pdfpages} %include pdf file in latex
+%\RequirePackage{titlesec}
+
 
 
 
@@ -96,7 +98,7 @@
 \iftoggle{lang}{
 	% define new commands in bahasa
 	\newcommand{\listappendixname}{DAFTAR LAMPIRAN}%
-	\newcommand{\nomenclaturename}{ARTI LAMBANG DAN SINGKATAN}%
+	\newcommand{\nomenclaturename}{DAFTAR SINGKATAN}%
 	\newcommand{\acknowledgmentname}{HALAMAN PERSEMBAHAN}%
 	\newcommand{\approvalpage}{HALAMAN PENGESAHAN}
 	\newcommand{\statementname}{PERNYATAAN BEBAS PLAGIASI}
@@ -118,11 +120,11 @@
 
 % redefine commands in babel bahasa
 \addto\captionsbahasa{%
-	\renewcommand{\prefacename}{PRAKATA}%
+	\renewcommand{\prefacename}{KATA PENGANTAR}%
 	\renewcommand{\contentsname}{DAFTAR ISI}%
 	\renewcommand{\listfigurename}{DAFTAR GAMBAR}%
 	\renewcommand{\listtablename}{DAFTAR TABEL}%
-	\renewcommand{\abstractname}{Intisari}%
+	\renewcommand{\abstractname}{ABSTRAKSI}%
 	\renewcommand{\partname}{BAGIAN}%
 	\renewcommand{\chaptername}{BAB}%
 	\renewcommand{\appendixname}{LAMPIRAN}%
@@ -158,10 +160,10 @@
 \geometry{
 	a4paper,
 	papersize={21cm,29.7cm},
-	top=4cm,
-	left=4cm,
-	right=3cm,
-	bottom=3cm
+	top=2.54cm,
+	left=3.54cm,
+	right=2.54cm,
+	bottom=2.54cm
 }
 \setlength{\parindent}{1.25cm}
 \setlength{\parskip}{6pt}
@@ -243,7 +245,7 @@
 % If Bachelor
 \iftoggle{bachelor}{
 	\newcommand{\printcover}[2]{
-		\newgeometry{top=4cm,bottom=3cm,left=3.2cm,right=2.2cm}
+		\newgeometry{top=2.54cm,bottom=2.54cm,left=3.54cm,right=2.54cm}
 		\thispagestyle{empty}
 		\setcounter{page}{1}
 		\pagenumbering{roman}
@@ -263,7 +265,7 @@
 					\iftoggle{lang}
 					{\MakeUppercase{Program Studi \@program}}
 					{\MakeUppercase{\@program \vspace{1em} Program}}\\
-					\iftoggle{lang}{\MakeUppercase{\@departmentIna}}{\MakeUppercase{\@departmentEng}} \\
+					\iftoggle{lang}{\scalebox{1.0}[1.0]{\MakeUppercase{\@departmentIna}}}{\MakeUppercase{\@departmentEng}} \\
 					\iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}}
 					\MakeUppercase{\@university} \\ 
 					\MakeUppercase{\@city} \\ 
@@ -324,7 +326,7 @@
 \iftoggle{doctoral}{
 	\newcommand{\printcover}[1]{
 		\newgeometry{left=3.5cm,top=2.5cm,bottom=2.5cm,right=2.5cm}
-		\titleformat*{\section}{\centering\normalfont\normalsize\bfseries}
+		\titleformat*{\section}{\raggedright\normalfont\normalsize\bfseries}
 		\thispagestyle{empty}%
 		\setcounter{page}{1}
 		\pagenumbering{roman}
@@ -375,7 +377,8 @@
 		\fancyfoot[C]{\thepage}
 		\begin{center}
 			\begin{singlespacing}
-				\MakeUppercase{\bfseries\fontsize{14pt}{16pt}\selectfont\@title}\\
+				%\MakeUppercase{\bfseries\fontsize{14pt}{16pt}\selectfont\@title}\\
+				\textbf{\MakeUppercase{\fontsize{14pt}{16pt}\selectfont\@title}}\\
 				\vspace{1cm}
 				\textbf{\iftoggle{lang}{SKRIPSI}{THESIS}}\\
 				\vspace{2cm}
@@ -383,7 +386,7 @@
 					{Diajukan Sebagai Salah Satu Syarat untuk Memperoleh}
 					{Proposed as A Requirement to Obtain}\\
 				\iftoggle{lang}
-					{Gelar Sarjana Teknik Program S-1}
+					{Gelar Sarjana Teknik}
 					{Undergraduate Degree (\textit{Sarjana Teknik})}\\
 				\iftoggle{lang}
 					{pada \@departmentIna}
@@ -403,7 +406,7 @@
 				\vfill
 				\begin{center}
 					\begin{tabular}{ccc}
-						\iftoggle{lang}{Pembimbing I}{Supervisor I} &\hspace{2cm} & \iftoggle{lang}{Pembimbing II}{Supervisor II} \\
+						\iftoggle{lang}{Dosen Pembimbing I}{Supervisor I} &\hspace{2cm} & \iftoggle{lang}{Dosen Pembimbing II}{Supervisor II} \\
 						\vspace{0.3cm} & \vspace{0.3cm} & \vspace{0.3cm}\\
 						\textbf{\underline{\getsupervisor{1}{1}}}& &
 						\textbf{\underline{\getsupervisor{2}{1}}} \\
@@ -601,7 +604,7 @@
 %% Dedication Page
 %======================================
 \newcommand{\chapterdedication}[1]{
-	\newgeometry{right=3cm,left=3cm,top=3cm,bottom=3cm}
+	\newgeometry{top=2.54cm,bottom=2.54cm,left=3.54cm,right=2.54cm}
 	\chapter*{\dedicationpage}%
 	\input{#1}
 	\addcontentsline{toc}{chapter}{\dedicationpage}
@@ -611,7 +614,7 @@
 %% Statement Page
 %======================================
 \newcommand{\chapterstatement}[1]{
-	\newgeometry{right=3cm,left=3cm,top=3cm,bottom=3cm}
+	\newgeometry{right=2.54cm,left=3.54cm,top=2.54cm,bottom=2.54cm}
 	\chapter*{\statementname}%
 	\input{#1}
 	\addcontentsline{toc}{chapter}{\statementname}
@@ -783,6 +786,7 @@
 {\ifnum \c@chapter>\z@ \@arabic\c@chapter.\fi \@arabic\c@table}
 
 % Section style
+
 \titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
 \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
 \titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
