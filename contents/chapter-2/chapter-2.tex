@@ -1,74 +1,40 @@
-\chapter{Blok beda halaman}
+\chapter{Tinjauan Pustaka dan Dasar Teori}
 
-\section{Membuat algoritma terpisah}
+\section{Tinjauan Pustaka}
 
-Untuk membuat algoritma terpisah seperti pada contoh berikut, kita dapat memanfaatkan perintah \textit{algstore} dan \textit{algrestore} yang terdapat pada paket \textit{algcompatible}. Pada dasarnya, kita membuat dua blok algoritma dimana blok pertama kita simpan menggunakan \textit{algstore} dan kemudian di-restore menggunakan \textit{algrestore} pada algoritma kedua. Perintah tersebut dimaksudkan agar terdapat kesinamungan antara kedua blok yang sejatinya adalah satu blok. 
+Berisi tugas akhir-tugas akhir terdahulu yang terkait dengan judul skripsi yang dilakukan. Hal ini meliputi skripsi, tesis, atau publikasi terdahulu yang terkait dengan judul skripsi yang diusulkan. Lakukan pembahasan secara sistemastis dengan menjelaskan masalah apa yang dilakukan oleh tugas akhir terdahulu, kontribusi yang dilakukan, serta analisis penulis terkait dengan keunggulan dan keterbatasan tugas akhir. 
 
-\begin{algorithm}                     
-	\caption{Contoh algorima}          
-	\label{findme}                          
-	\begin{algorithmic} [1]                   
-		\Procedure{CreateSet}{$v$}
-		\State Create new set containing $v$
-		\EndProcedure
-		\algstore{myalg}
-	\end{algorithmic}
-\end{algorithm}
-
-Pada blok algoritma kedua, tidak perlu ditambahkan caption dan label, karena sudah menjadi satu bagian dalam blok pertama. Pembagian algoritma menjadi dua bagian ini berguna jika kita ingin menjelaskan bagian-bagian dari sebuah algoritma, maupun untuk memisah algoritma panjang dalam beberapa halaman.
-
-\begin{algorithm}                     
-	\begin{algorithmic} [1]                   
-		\algrestore{myalg}
-		\Procedure{ConcatSet}{$v$}
-		\State Create new set containing $v$
-		\EndProcedure
-	\end{algorithmic}
-\end{algorithm}
+Setelah membahas berbagai tugas akhir terdahulu, maka alangkah baiknya penulis melakukan rangkuman terutama terkait dengan peluang pengembangan atau tugas akhir yang akan dilakukan.
 
 
-\section{Membuat tabel terpisah}
+\section{Dasar Teori}
 
-Untuk membuat tabel panjang yang melebihi satu halaman, kita dapat mengganti kombinasi \textit{table + tabular} menjadi \textit{longtable} dengan contoh sebagai berikut.
+Berisi teori-teori yang menjadi dasar solusi atau produk hasil skripsi. Dasar teori pada umumnya diperoleh melalui buku referensi, publikasi tugas akhir, dan informasi web yang dapat dipertanggungjawabkan. Hindari penggunaan dasar teori melalui tautan wikipedia, surat kabar, atau portal berita.
 
-\begin{longtable}{| c | c |} 
-	\caption{Contoh tabel panjang}
-	\label{tab:myfirstlongtable} \\
-	\hline
-	header 1 & header 2 \\
-	\hline \hline
-	foo & bar \\ \hline 
-	foo & bar \\ \hline
-	foo & bar \\ \hline
-	foo & bar \\ \hline
-	foo & bar \\ \hline
-	foo & bar \\ \hline
-	foo & bar \\ \hline
-	foo & bar \\ \hline
-	foo & bar \\ \hline
-	foo & bar \\ \hline
-	foo & bar \\ \hline
-\end{longtable}
+\subsection{Pengenalan Aplikasi Permainan}
 
+Proses pembuatan \textit{game} dimulai dari pembuatan \textit{game design document} dimana 
+dokumen ini akan menjadi landasan pengembangan game tersebut serta menginformasikan gambaran keseluruhan game yang akan dibuat \cite{ferdiana2012agile}. \textcolor{red}{\textit{Catatan: apapun yang diambil dari tulisan orang lain harus disitasi seperti dicontohkan \cite{ferdiana2012agile}.}}
 
-\section{Menulis formula terpisah halaman}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=12cm]{contents/chapter-2/gambar-buatan-sendiri.png}
+	\caption{Contoh gambar}
+	\label{Fig:gambar-buatan-sendiri}
+\end{figure}
 
-Terkadang kita butuh untuk menuliskan rangkaian formula dalam jumlah besar sehingga melewati batas satu halaman. Solusi yang digunakan bisa saja dengan memindahkan satu blok formula tersebut pada halaman yang baru atau memisah rangkaian formula menjadi dua bagian untuk masing-masing halaman. Cara yang pertama mungkin akan menghasilkan alur yang berbeda karena ruang kosong pada halaman pertama akan diisi oleh teks selanjutnya. Sehingga di sini kita dapat memanfaatkan \textit{align} yang sudah diatur dengan mode \textit{allowdisplaybreaks}. Penggunakan \textit{align} ini memungkinkan satu rangkaian formula terpisah berbeda halaman. 
+\textit{Game design document} adalah sebuah bagian penting dalam pembuatan game baik itu elemen-elemen penyusunnya maupun proses pengembangannya. Game design yang telah dibuat, dijabarkan satu persatu mengenai tahapan dalam pembuatan game dan hasilnya disatukan dalam bentuk dokumentasi \textit{game design document} yang digunakan oleh \textit{developer} sebagai buku petunjuk bagaimana membuat \textit{game} \cite{lukito2016}.
 
-Contoh sederhana dapat digambarkan sebagai berikut.
+Dalam buku \textit{Game Design Essentials} disebutkan \textit{game design document} merupakan metode yang menghubungkan elemen-elemen penyusun \textit{game}, baik itu \textit{art, sound, program, 
+gameplay} sehingga semuanya terdokumentasi menjadi satu dan menjadi acuan bagi para \textit{developer} dalam membuat \textit{game} \cite{wibirama2013dual}. 
 
-\begin{align*}
-x &= y^2\\
-x &= y^3\\
-a + b &= c\\
-x &= y - 2\\
-a + b &= d + e \tag{\stepcounter{equation}\theequation}\\
-x^2 + 3 &= y\\
-a(x) &= 2x\\
-b_i &= 5x\\
-10x^2 &= 9x\\
-2x^2 + 3x + 2 &= 0\\
-5x - 2 &= 0\\
-d &= \log x\\
-y &= \sin x
-\end{align*}
+\subsection{Dasar Teori Lainnya}
+
+\section{Analisis Perbandingan Metode}
+
+Di dalam tinjauan pustaka hasil akhirnya adalah analisis secara kualitatif atau pun secara kuantitatif kelebihan dan kekurangan metode jika dikaitkan dengan masalah, batasan-batasan masalah dan solusi yang dinginkan. Analisis kuantitatif tidak wajib teapi mempunyai nilai tambah di dalam tugas akhir saudara. Bagian ini menjelaskan kenapa metode tersebut dipilih dan uraikan dengan lebih jelas metode pelaksanaan tugas akhir yang ingin Anda lakukan. 
+
+\section{Pertanyaan Tugas Akhir (Jika Perlu)}
+
+Pertanyaan tugas akhir bersifat opsional dan dapat ditambahkan untuk menekankan hal-hal yang hendak diketahui dari tugas akhir berdasar pada tujuan tugas akhir. Pertanyaan tugas akhir dikenal dengan RQ (\textit{Research Question}) dan harus memiliki keterkaitan dengan RO (\textit{Research Objective}). Satu RO dapat memiliki satu atau lebih dari satu RQ. 
+

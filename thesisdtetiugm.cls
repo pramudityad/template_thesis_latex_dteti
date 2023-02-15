@@ -124,7 +124,7 @@
 	\renewcommand{\contentsname}{DAFTAR ISI}%
 	\renewcommand{\listfigurename}{DAFTAR GAMBAR}%
 	\renewcommand{\listtablename}{DAFTAR TABEL}%
-	\renewcommand{\abstractname}{ABSTRAKSI}%
+	\renewcommand{\abstractname}{INTISARI}%
 	\renewcommand{\partname}{BAGIAN}%
 	\renewcommand{\chaptername}{BAB}%
 	\renewcommand{\appendixname}{LAMPIRAN}%
@@ -251,13 +251,14 @@
 		\pagenumbering{roman}
 		\begin{center}
 			\begin{singlespacing}
-				\MakeUppercase{\bfseries\fontsize{14pt}{16pt}\selectfont\@title}\\
+				\MakeUppercase{\fontsize{14pt}{16pt}\selectfont\textbf{\@title}}\\
 				\vspace{1.5cm}
-				\textbf{#2}\\
+				%\textbf{#2}\\
+				\fontsize{14pt}{16pt}SKRIPSI\\
 				\vfill
 				\includegraphics[width=0.5\textwidth]{#1}
 				\vfill
-				\iftoggle{lang}{Disusun oleh:}{Written by:}\\
+				\iftoggle{lang}{\textbf{Disusun oleh:}}{Written by:}\\
 				\vspace{0.4em}
 				\textbf{\@authorName \\ \@authorID \\}
 				\vfill
@@ -864,3 +865,4 @@
 % List
 %---------------
 \setlist[enumerate]{topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex}
+\setlist[itemize]{align=parleft,left=4em,topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex}
