@@ -18,7 +18,7 @@
 % Information Input
 %======================================
 % Input author's name and ID number
-\author{<<\underline{AUTHOR}>>}{<<NIM>>}
+\author{<<AUTHOR>>}{<<NIM>>}
 % Input the thesis' title
 \title{<<JUDUL SKRIPSI>>}
 % Program and the head of the program
@@ -131,6 +131,7 @@
 \include{contents/chapter-4/chapter-4}
 \include{contents/chapter-5/chapter-5}
 \include{contents/chapter-6/chapter-6}
+
 %======================================
 
 %======================================
@@ -154,9 +155,16 @@
 %======================================
 % You can change 
 %    the filename and location of the files inputted
-\include{contents/appendix/appendix-A}
-\include{contents/appendix/appendix-B}
-\chapterappendix{contents/appendix/appendix}
+%    use \chapterappendix for the first page of the appendix
+%    use \chapterappendixadd for the next page
+
+\appendix
+
+
+\chapterappendix{contents/appendix/appendix-isi-lampiran}
+\chapterappendixadd{contents/appendix/appendix-latex}
+\chapterappendixadd{contents/appendix/appendix-penulisan-referensi}
+\chapterappendixadd{contents/appendix/appendix-code}
 
 
 

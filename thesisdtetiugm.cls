@@ -260,7 +260,7 @@
 				\vfill
 				\iftoggle{lang}{\textbf{Disusun oleh:}}{Written by:}\\
 				\vspace{0.4em}
-				\textbf{\@authorName \\ \@authorID \\}
+				\textbf{\underline{\@authorName} \\ \@authorID \\}
 				\vfill
 				\textbf{
 					\iftoggle{lang}
@@ -847,14 +847,40 @@
 	\renewcommand\thesubsection {L.\@arabic\c@section.\@arabic\c@subsection}
 	
 	% Add to TOC
-	\addcontentsline{toc}{chapter}{\appendixname}
-%	\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+	\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
+	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
+	%\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
 	% Page number style
 	\fancyhf{}
 	\fancyfoot[C]{\thepage}
 	
 	\fontsize{14pt}{16pt}\selectfont
-	\centering\MakeUppercase{\normalfont\bfseries \appendixname }\\
+	%\centering\MakeUppercase{\normalfont\bfseries \appendixname }\\
+	\vspace{20pt}
+	\fontsize{12}{2}\selectfont
+	\onehalfspacing
+	\input{#1}
+}
+
+\newcommand{\chapterappendixadd}[1]{
+	\newpage
+
+	% Makes all chapter name to L
+	\renewcommand{\thechapter}{L}
+	\renewcommand{\thepage}{L-\arabic{page}}
+	\renewcommand \thesection {L.\@arabic\c@section}
+	\renewcommand\thesubsection {L.\@arabic\c@section.\@arabic\c@subsection}
+	
+	% Add to TOC
+	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
+	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\chaptername}	
+	%\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+	% Page number style
+	\fancyhf{}
+	\fancyfoot[C]{\thepage}
+	
+	\fontsize{14pt}{16pt}\selectfont
+	%\centering\MakeUppercase{\normalfont\bfseries \appendixname }\\
 	\vspace{20pt}
 	\fontsize{12}{2}\selectfont
 	\onehalfspacing
