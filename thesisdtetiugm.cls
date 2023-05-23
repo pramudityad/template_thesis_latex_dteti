@@ -80,6 +80,7 @@
 \usepackage{longtable}
 \usepackage{enumitem}
 \usepackage[labelsep=period]{caption} % use period as label separator
+\usepackage[bookmarks=true,hidelinks,bookmarksnumbered]{hyperref}  
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{pgf-pie}
