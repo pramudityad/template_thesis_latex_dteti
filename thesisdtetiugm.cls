@@ -838,8 +838,8 @@
 \newcommand{\chapterappendix}[1]{
 	\newpage
 	% Reset counter
-	\setcounter{chapter}{0}
-	\setcounter{section}{0}
+	%\setcounter{chapter}{0}
+	%\setcounter{section}{0}
 	\setcounter{page}{1}
 	% Makes all chapter name to L
 	\renewcommand{\thechapter}{L}
@@ -848,7 +848,8 @@
 	\renewcommand\thesubsection {L.\@arabic\c@section.\@arabic\c@subsection}
 	
 	% Add to TOC
-	\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
+    \addcontentsline{toc}{chapter}{LAMPIRAN}	
+	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
 	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
 	%\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
 	% Page number style
