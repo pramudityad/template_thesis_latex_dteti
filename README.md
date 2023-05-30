@@ -10,7 +10,7 @@
 
 
 - [2023-02-17] Initial release.
-- [2023-05-30] [v1.1](changelog/2023-05-30-v1.1.md)
+- [2023-05-30] [v1.1](https://github.com/Dr-Sidik/template_thesis_latex_dteti/releases/tag/v1.1)
 
 
 ## How-to-use 
