@@ -9,7 +9,8 @@
 ## What's new
 
 
-- [2022-02-17] Initial release. 
+- [2023-02-17] Initial release.
+- [2023-05-30] [v1.1](changelog/2023-05-30-v1.1.md)
 
 
 ## How-to-use 
