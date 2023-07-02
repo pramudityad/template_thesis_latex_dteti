@@ -410,8 +410,10 @@
 					\begin{tabular}{ccc}
 						\iftoggle{lang}{Dosen Pembimbing I}{Supervisor I} &\hspace{2cm} & \iftoggle{lang}{Dosen Pembimbing II}{Supervisor II} \\
 						\vspace{0.3cm} & \vspace{0.3cm} & \vspace{0.3cm}\\
-						\textbf{\underline{\getsupervisor{1}{1}}}& &
-						\textbf{\underline{\getsupervisor{2}{1}}} \\
+						\textbf{\underline{\scalebox{.8}[1.0]{\getsupervisor{1}{1}}}}& &
+					              \textbf{\underline{\scalebox{.8}[1.0]{\getsupervisor{2}{1}}}} \\
+                        %   \textbf{\underline{\getsupervisor{1}{1}}}& &
+					      %        \textbf{\underline{\getsupervisor{2}{1}}} \\
 						\textbf{\getsupervisor{1}{2}} & & \textbf{\getsupervisor{2}{2}}\\
 					\end{tabular}
 				\end{center}

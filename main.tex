@@ -29,8 +29,8 @@
 \yearsubmit{<<TAHUN PENDADARAN>>}
 \examdate{<<Exam date>>}
 % Name of thesis supervisors/promotors
-\addsupervisor{<<Nama Dosen>>}{<<NIP xxxxxx>>}
-\addsupervisor{<<Nama Dosen>>}{<<NIP xxxxxx>>}
+\addsupervisor{Dosen Pembimbing 1, S.T., M.Eng., PhD.}{<<NIP xxxxxx>>}
+\addsupervisor{Dosen Pembimbing 2, S.T., M.Eng., PhD.}{<<NIP xxxxxx>>}
 %\addsupervisor{<<Supervisor 3>>}{<<NIP>>}
 % Name of examiners
 %\addexaminer{<<Examiner 1>>}{<<NIP 1>>}
@@ -69,14 +69,17 @@
 % 	\printendorsementjpg. Otherwise, use \printendorsement.
 % 	Choose one only. Comment out unused command(s).
 %
+\cleardoublepage \phantomsection
 \printendorsement
 %\printendorsementpdf
 %\printendorsementjpg{sample/scanned-endorsement.jpg}
 
 %---- DEDICATION PAGE ----
+\cleardoublepage \phantomsection
 \chapterstatement{contents/statement/statement}
 %\chapterstatementjpg{sample/scanned-statement.jpg}
 
+\cleardoublepage \phantomsection
 \chapterdedication{contents/dedication/dedication}
 
 %---- STATEMENT PAGE ----
@@ -88,30 +91,37 @@
 
 
 %---- PREFACE PAGE ----
+\cleardoublepage \phantomsection
 \chapterpreface{contents/preface/preface}
 
 %======================================
 % Create Table of Contents, List of Figures, List of Tables
 % <Do not change this part>
 %======================================
+\cleardoublepage \phantomsection
 \thetoc
 \onehalfspacing
 \tableofcontents
 \singlespacing
+\cleardoublepage \phantomsection
 \thelot
 \listoftables
+\cleardoublepage \phantomsection
 \thelof
 \listoffigures
 
 %======================================
 
 %---- NOMENCLATURE PAGE ----
+\cleardoublepage \phantomsection
 \chapternomenclature{contents/nomenclature/nomenclature}
 
 %---- INTISARI PAGE----
+\cleardoublepage \phantomsection
 \chapterintisari{contents/abstract/intisari}
 
 %---- ABSTRACT PAGE----
+\cleardoublepage \phantomsection
 \chapterabstract{contents/abstract/abstract}
 
 
@@ -125,11 +135,17 @@
 \startmain
 % You can change 
 %    the filename and location of the files inputted
+\cleardoublepage \phantomsection
 \include{contents/chapter-1/chapter-1}
+\cleardoublepage \phantomsection
 \include{contents/chapter-2/chapter-2}
+\cleardoublepage \phantomsection
 \include{contents/chapter-3/chapter-3}
+\cleardoublepage \phantomsection
 \include{contents/chapter-4/chapter-4}
+\cleardoublepage \phantomsection
 \include{contents/chapter-5/chapter-5}
+\cleardoublepage \phantomsection
 \include{contents/chapter-6/chapter-6}
 
 %======================================
@@ -137,6 +153,7 @@
 %======================================
 %  References
 %======================================
+\cleardoublepage \phantomsection
 \thereferences
 % You can change 
 %    the filename and location of the files inputted
@@ -160,7 +177,7 @@
 
 \appendix
 
-
+\cleardoublepage \phantomsection
 \chapterappendix{contents/appendix/appendix-isi-lampiran}
 \chapterappendixadd{contents/appendix/appendix-latex}
 \chapterappendixadd{contents/appendix/appendix-penulisan-referensi}
