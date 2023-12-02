@@ -1,42 +1,96 @@
-\chapter{Tinjauan Pustaka dan Dasar Teori}
+\chapter{Tinjauan Pustaka}
 
-\section{Tinjauan Pustaka}
+Autentikasi berbasis risiko (RBA) adalah metode untuk memverifikasi identitas
+pengguna dengan menyesuaikan tingkat autentikasi secara dinamis berdasarkan
+tingkat risiko sesi saat ini. Pendekatan ini bertujuan untuk menyeimbangkan
+keamanan dan kenyamanan dengan menyediakan langkah-langkah autentikasi yang
+lebih kuat ketika tingkat risiko tinggi, dan langkah-langkah yang lebih longgar
+ketika tingkat risiko rendah.
 
-Berisi tugas akhir-tugas akhir terdahulu yang terkait dengan judul skripsi yang dilakukan. Hal ini meliputi skripsi, tesis, atau publikasi terdahulu yang terkait dengan judul skripsi yang diusulkan. Lakukan pembahasan secara sistemastis dengan menjelaskan masalah apa yang dilakukan oleh tugas akhir terdahulu, kontribusi yang dilakukan, serta analisis penulis terkait dengan keunggulan dan keterbatasan tugas akhir. 
+Sebuah tinjauan literatur mengenai Autentikasi Berbasis Risiko menemukan
+bahwa banyak penelitian telah dilakukan pada topik ini dan berbagai teknik telah
+diusulkan. Salah satu teknik yang paling umum adalah menggunakan algoritma
+penilaian risiko untuk secara dinamis menyesuaikan tingkat otentikasi berdasarkan
+tingkat risiko.
 
-Setelah membahas berbagai tugas akhir terdahulu, maka alangkah baiknya penulis melakukan rangkuman terutama terkait dengan peluang pengembangan atau tugas akhir yang akan dilakukan.
+Studi yang dilakukan oleh Thomas dkk. (2017) membahas resiko dari password
+yang dicuri dan bagaimana kebocoran kredensial dapat terjadi. Tidak hanya itu
+namun studi tersebut juga menampilkan situs situs yang banyak mengalami
+kebocoran data. Resiko yang paling besar dapat terjadi adalah data-data kita
+disalahgunakan hingga mengalami kerugian material. Sedangkan phising menjadi
+faktor utama penyebab terjadinya kebocoran kredensial dan disusul oleh
+keyloggers.
 
+Stephan Wiefling dkk. (2022) mengemukakan Risk-Based Authentication
+(RBA) dapat memperkirakan apakah login itu sah atau merupakan upaya
+pengambilalihan akun. Ini dilakukan dengan memantau dan merekam sekumpulan
+fitur yang tersedia dalam konteks login. Fitur potensial berkisar dari jaringan (mis.,
+alamat IP), perangkat atau klien (mis., string agen pengguna), hingga informasi
+biometrik perilaku (mis., waktu masuk).Selain itu kelebihan RBA juga telah disurvey oleh Cabarcos dkk. (2019)
+menganalisis literatur tentang autentikasi adaptif berdasarkan prinsip-prinsip desain
+yang terkenal dalam disiplin sistem berbasis resiko dan tantangan nya adalah tidak
+ada satu ukuran yang cocok untuk semua dalam keamanan, tidak ada mekanisme baru yang akan menggantikan semua mekanisme lainnya dan diterima sebagai
+solusi universal. Doerfler dkk. (2019) menggambarkan bahwa tantangan login
+bertindak sebagai penghalang penting untuk pembajakan, tetapi gesekan dalam
+proses menyebabkan pengguna yang sah gagal masuk, meskipun pada akhirnya
+dapat mengakses akun mereka lagi.
 
-\section{Dasar Teori}
+Banyak sistem yang sudah mengimplementasikan RBA karena kelebihannya,
+studi yang dilakukan oleh Prasad dkk. (2017) menjadi awal mula bagaimana sistem
+perbankan mulai menerapkan autentikasi berdasarkan risiko dengan kombinasi
+lokasi. Sedangkan dalam sektor kesehatan sendiri autentikasi standar seperti user
+dan password masih banyak digunakan, karena sistem IT kesehatan masih fokus
+dalam mengembangkan The Fast Health Interoperability Resources (FHIR) Ayaz
+dkk. (2021)
 
-Berisi teori-teori yang menjadi dasar solusi atau produk hasil skripsi. Dasar teori pada umumnya diperoleh melalui buku referensi, publikasi tugas akhir, dan informasi web yang dapat dipertanggungjawabkan. Hindari penggunaan dasar teori melalui tautan wikipedia, surat kabar, atau portal berita.
+Selanjutnya, beberapa studi dalam literatur mengusulkan metode otentikasi
+berbasis risiko yang menggunakan berbagai faktor seperti lokasi, waktu, dan jenis
+perangkat untuk menentukan tingkat risiko suatu sesi. Sebagai contoh, sebuah
+penelitian oleh Agarwal dkk. (2016) mengusulkan sistem RBA berbasis lokasi yang
+menggunakan lokasi perangkat pengguna untuk menentukan tingkat risiko suatu
+sesi. Studi ini menemukan bahwa sistem yang diusulkan secara efektif
+meningkatkan keamanan sistem dengan tetap mempertahankan kegunaan.
 
-\subsection{Pengenalan Aplikasi Permainan}
+Penggunaan RBA masih terbatas pada major digital service, hal ini sebagian
+disebabkan oleh kurangnya pengetahuan dan implementasi terbuka yang
+memungkinkan penyedia layanan mana pun untuk meluncurkan perlindungan RBA
+kepada penggunanya. Untuk menutup kesenjangan ini, Stephan Wiefling dkk.
+(2021) memberikan analisis tentang karakteristik RBA dalam penerapan praktis
+sekaligus memberikan dataset yang dapat digunakan secara umum.
+Penelitian lain Misbahuddin dkk. (2017) mengusulkan sistem RBA berbasis
+perangkat yang menggunakan jenis perangkat dan status perangkat untuk
+menentukan tingkat risiko suatu sesi. Penelitian tersebut menemukan bahwa sistem
+yang diusulkan secara efektif meningkatkan keamanan sistem dengan tetap
+mempertahankan kegunaan menggunakan machine learning.
 
-Proses pembuatan \textit{game} dimulai dari pembuatan \textit{game design document} dimana 
-dokumen ini akan menjadi landasan pengembangan game tersebut serta menginformasikan gambaran keseluruhan game yang akan dibuat \cite{ferdiana2012agile}. \textcolor{red}{\textit{Catatan: apapun yang diambil dari tulisan orang lain harus disitasi seperti dicontohkan \cite{ferdiana2012agile}.}}
+Penggunaan analisis berbasis risiko dalam konteks machine to machine dibahas
+dalam studi yang dilakukan oleh Taneja (2013). Mekanisme keamanan tertentu
+mengasumsikan bahwa akhir perangkat sudah diamankan. Dalam jaringan IoT,
+perangkat IoT itu sendiri dapat dikompromikan. Seorang penyerang dapat mencuri
+perangkat, mendapatkan akses mengaksesnya dan menggunakannya untuk
+serangan yang lebih merusak.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=12cm]{contents/chapter-2/gambar-buatan-sendiri.png}
-	\caption[Contoh gambar]{Contoh gambar \cite{lukito2016}}
-	\label{Fig:gambar-buatan-sendiri}
-\end{figure}
+Roy dan Dasgupta (2018) sudah meneliti bahwa fuzzy dapat menjadi terobosan
+dalam menentukan multifaktor autentikasi. Selain itu, banyak penelitian juga telah
+mengusulkan penggunaan algoritma pembelajaran mesin seperti pohon keputusan,
+Random Forest, dan jaringan syaraf untuk meningkatkan kinerja RBA. Sebagai
+contoh, sebuah penelitian oleh Zhang, F dkk. (2012) mengusulkan sistem RBA
+yang menggunakan algoritma Random Forest untuk menentukan tingkat risiko dari
+sebuah sesi. Penelitian ini menemukan bahwa sistem yang diusulkan mencapai
+tingkat akurasi yang tinggi dan meningkatkan keamanan sistem. Dalam studi lain
+Alam dan Vuong (2013), Speiser dkk. (2019) menunjukkan bahwa Random Forest
+adalah pilihan yang baik karena dapat secara efektif mengklasifikasikan transaksi
+berdasarkan tingkat resikonya menggunakan serangkaian fitur yang berasal dari
+data transaksi. Random Forest adalah algoritma pembelajaran mesin yang kuat yang
+dapat menangani kumpulan data besar dan mampu menangani kebisingan dan nilai
+yang hilang dengan baik. Selain itu, dapat memberikan skor kepentingan fitur, yang
+dapat digunakan untuk mengidentifikasi fitur yang paling penting untuk klasifikasi
+risiko. Secara keseluruhan, Random Forest adalah algoritma pembelajaran mesin
+yang efektif dan banyak digunakan untuk otentikasi M2M berbasis risiko.
 
+Rangkuman penelitian sebelumnya dapat dilihat pada Tabel 2.1. Dalam studi
+ini ditawarkan pendekatan autentikasi berbasis risiko dengan menggunakan dalam
+kasus machine to machine device yang dikaitkan dalam FHIR service.
 
-
-\textit{Game design document} adalah sebuah bagian penting dalam pembuatan game baik itu elemen-elemen penyusunnya maupun proses pengembangannya. Game design yang telah dibuat, dijabarkan satu persatu mengenai tahapan dalam pembuatan game dan hasilnya disatukan dalam bentuk dokumentasi \textit{game design document} yang digunakan oleh \textit{developer} sebagai buku petunjuk bagaimana membuat \textit{game} \cite{lukito2016}.
-
-Dalam buku \textit{Game Design Essentials} disebutkan \textit{game design document} merupakan metode yang menghubungkan elemen-elemen penyusun \textit{game}, baik itu \textit{art, sound, program, 
-gameplay} sehingga semuanya terdokumentasi menjadi satu dan menjadi acuan bagi para \textit{developer} dalam membuat \textit{game} \cite{wibirama2013dual}. 
-
-\subsection{Dasar Teori Lainnya}
-
-\section{Analisis Perbandingan Metode}
-
-Di dalam tinjauan pustaka hasil akhirnya adalah analisis secara kualitatif atau pun secara kuantitatif kelebihan dan kekurangan metode jika dikaitkan dengan masalah, batasan-batasan masalah dan solusi yang dinginkan. Analisis kuantitatif tidak wajib teapi mempunyai nilai tambah di dalam tugas akhir saudara. Bagian ini menjelaskan kenapa metode tersebut dipilih dan uraikan dengan lebih jelas metode pelaksanaan tugas akhir yang ingin Anda lakukan. 
-
-\section{Pertanyaan Tugas Akhir (Jika Perlu)}
-
-Pertanyaan tugas akhir bersifat opsional dan dapat ditambahkan untuk menekankan hal-hal yang hendak diketahui dari tugas akhir berdasar pada tujuan tugas akhir. Pertanyaan tugas akhir dikenal dengan RQ (\textit{Research Question}) dan harus memiliki keterkaitan dengan RO (\textit{Research Objective}). Satu RO dapat memiliki satu atau lebih dari satu RQ. 
+% todo: tabel 2.1
 

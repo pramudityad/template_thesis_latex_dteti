@@ -1,3 +1,475 @@
-\chapter{Tambahan (Opsional)}
+\chapter{IMPLEMENTASI}
+Pada bab ini akan dijelaskan mengenai implementasi dari sistem yang telah dibangun. Implementasi sistem ini terdiri dari pengumpulan data, persiapan data, pemilihan fitur, dan pembangunan sistem.
 
-Anda boleh menambahkan Bab jika diperlukan. Jumlah Bab tidak harus sesuai dengan \textit{template}. 
+\section{Pengumpulan Data}
+Dalam penelitian ini data yang digunakan adalah data fitur login dari lebih dari 33 juta upaya login dan lebih dari 3,3 juta pengguna pada layanan online berskala besar di Norwegia. Data asli dikumpulkan antara Februari 2020 dan Februari 2021 dari Kaggle. Data ini berisi 284807 baris data dengan 31 kolom. Kolom-kolom tersebut adalah sebagai berikut:
+
+\begin{longtable}{|p{0.2\textwidth}|p{0.15\textwidth}|p{0.3\textwidth}|p{0.2\textwidth}|}
+    \hline
+    \textbf{Feature} & \textbf{Data Type} & \textbf{Description} & \textbf{Range or Example} \\ \hline
+    IP Address & String & IP address belonging to the login attempt & 0.0.0.0 - 255.255.255.255 \\ \hline
+    Country & String & Country derived from the IP address & US \\ \hline
+    Region & String & Region derived from the IP address & New York \\ \hline
+    City & String & City derived from the IP address & Rochester \\ \hline
+    ASN & Integer & Autonomous system number derived from the IP address & 0 - 600000 \\ \hline
+    User Agent String & String & User agent string submitted by the client & Mozilla/5.0 (Windows NT 10.0; Win64; ... \\ \hline
+    OS Name and Version & String & Operating system name and version derived from the user agent string & Windows 10 \\ \hline
+    Browser Name and Version & String & Browser name and version derived from the user agent string & Chrome 70.0.3538 \\ \hline
+    Device Type & String & Device type derived from the user agent string & (`mobile`, `desktop`, `tablet`, `bot`, `unknown`) \\ \hline
+    User ID & Integer & Identification number related to the affected user account & Random pseudonym \\ \hline
+    Login Timestamp & Integer & Timestamp related to the login attempt & 64 Bit timestamp \\ \hline
+    Round-Trip Time (RTT) [ms] & Integer & Server-side measured latency between client and server & 1 - 8600000 \\ \hline
+    Login Successful & Boolean & `True`: Login was successful, `False`: Login failed & (`true`, `false`) \\ \hline
+    Is Attack IP & Boolean & IP address was found in known attacker data set & (`true`, `false`) \\ \hline
+    Is Account Takeover & Boolean & Login attempt was identified as account takeover by incident response team of the online service & (`true`, `false`) \\ \hline
+    \caption{Deskripsi tabel fitur login}
+    \label{tab:my_label}
+\end{longtable}
+
+\section{Persiapan Data}
+Penggunaan dataset dalam penelitian ini membutuhkan beberapa tahapan persiapan data, yaitu:
+
+\subsection{Eksplorasi Data}
+Tahap ini diperlukan untuk mendapat gambaran umum mengenai data yang digunakan. Pada tahap ini dilakukan eksplorasi data untuk mengetahui jumlah baris dan kolom, tipe data, dan statistik deskriptif dari data. Hasil eksplorasi data dapat dilihat pada Tabel 5.1.
+
+\subsubsection{Sampling Data}
+Berikut sampling data menggunakan metode random sampling dengan jumlah data 5 baris.
+
+\begin{lstlisting}
+    import pandas as pd
+    
+    features = pd.read_csv('data.csv')
+    features.head()
+    \end{lstlisting}
+
+\subsection{Pemilihan Target}
+Pada tahap ini dilakukan pemilihan target yang akan diprediksi. Sebagaimana Random Forest merupakan algoritma klasifikasi, maka penelitian ini memerlukan fitur apa yang menjadi target.
+
+Melakukkan sampling terhadap tiga kolom yang dapat menjadi target, yaitu 'Login Successful', 'Is Attack IP', dan 'Is Account Takeover'. Berikut adalah kode untuk sampling data.
+
+\begin{lstlisting}
+    # calculate the percentage of True and False values in bolean char'
+    value_counts_1 = df['is_login_success'].value_counts(normalize=True)
+    is_login_success_true = value_counts_1[True] * 100
+    is_login_success_false = value_counts_1[False] * 100
+    print("is_login_success")
+    print(f"Percentage of True values: {is_login_success_true:.2f}%")
+    print(f"Percentage of False values: {is_login_success_false:.2f}%")
+
+    value_counts_2 = df['is_attack_ip'].value_counts(normalize=True)
+    is_attack_ip_true  = value_counts_2[True] * 100
+    is_attack_ip_false = value_counts_2[False] * 100
+    print("is_attack_ip")
+    print(f"Percentage of True values: {is_attack_ip_true:.2f}%")
+    print(f"Percentage of False values: {is_attack_ip_false:.2f}%")
+
+    value_counts_3 = df['is_account_takeover'].value_counts(normalize=True)
+    is_account_takeover_true  = value_counts_3[True] * 100
+    is_account_takeover_false = value_counts_3[False] * 100
+    print("is_account_takeover")
+    print(f"Percentage of True values: {is_account_takeover_true:.2f}%")
+    print(f"Percentage of False values: {is_account_takeover_false:.2f}%")
+    \end{lstlisting}
+
+    Berikut adalah hasil sampling data.
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Target} & \textbf{True} & \textbf{False} \\ \hline
+        Login Successful & 67,35\% & 32,65\% \\ \hline
+        Is Attack IP & 3,09\% & 96,91\% \\ \hline
+        Is Account Takeover & 0,01\% & 99,99\% \\ \hline
+        \end{tabular}
+        \caption{Hasil Sampling Data}
+        \label{tab:sampling_data}
+        \end{table}
+
+        Dari hasil sampling data di atas, terlihat bahwa kolom 'Login Successful' memiliki persentase True yang lebih besar dibandingkan dengan False, sehingga kolom ini dipilih sebagai target.
+
+
+\subsection{Pengecekan \textit{Missing Value}}
+Menggunakan kode berikut untuk mengecek apakah ada nilai yang hilang pada setiap kolom.
+\begin{lstlisting}
+    features.isnull().sum()
+    \end{lstlisting}
+
+hasilnya adalah sebagai berikut:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Feature} & \textbf{Missing Values} \\ \hline
+    Index & 0 \\ 
+    Login Timestamp & 0 \\ 
+    User ID & 0 \\ 
+    Round-Trip Time [ms] & 29993329 \\ 
+    IP Address & 0 \\ 
+    Country & 0 \\ 
+    Region & 47409 \\ 
+    City & 8590 \\ 
+    ASN & 0 \\ 
+    User Agent String & 0 \\ 
+    Browser Name and Version & 0 \\ 
+    OS Name and Version & 0 \\ 
+    Device Type & 1526 \\ 
+    Login Successful & 0 \\ 
+    Is Attack IP & 0 \\ 
+    Is Account Takeover & 0 \\ \hline
+    \end{tabular}
+    \caption{Missing Values in Each Feature}
+    \label{tab:missing_values}
+    \end{table}
+
+Dari tabel, terlihat bahwa sebagian besar kolom tidak memiliki nilai yang hilang, namun ada juga yang memilikinya. Misalnya, kolom 'Waktu Pulang Pergi [ms]' memiliki 29993329 nilai yang hilang, kolom 'Wilayah' memiliki 47409 nilai yang hilang, kolom 'Kota' memiliki 8590 nilai yang hilang, dan kolom 'Jenis Perangkat' memiliki 1526 nilai yang hilang.
+
+\subsection{Penambahan Kolom Token}
+Kolom token dibuat untuk menyimpan token yang digunakan untuk mengakses API. Kolom ini dibuat dengan cara mengenerate token secara acak menggunakan SHA512. Berikut adalah contoh kode untuk membuat kolom token.
+
+\begin{lstlisting}
+    # generate SHA512 Hash from user_id as m2m token
+    import hashlib
+
+    def generate_sha512_hash(user_id):
+        sha512_hash = hashlib.sha512()
+        sha512_hash.update(str(user_id).encode('utf-8'))
+        return sha512_hash.hexdigest()
+
+    features['token'] = features['user_id'].apply(generate_sha512_hash)
+    \end{lstlisting}
+
+Berikut adalah contoh token yang digenerate.
+
+\begin{table}[H]
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{User ID} & \textbf{Token} \\ \hline
+    -3065936140549856249 & 4ffe29f1960c24624ec2c36909f3b39cb8d59fa18515f4 \\
+    5932501938287412564 & ecee6cc95d3b047c8f796b8e772a468124b7ddb599a7a3 \\ \hline
+    \end{tabular}
+    \caption{Contoh Token}
+    \label{tab:token}
+    \end{table}
+
+\subsection{Pembersihan Data}
+Pada proses pembersihan data, dilakukan penamaan kolom, pembersihan data yang tidak diperlukan, seperti kolom 'Index' dan lainnya. Berikut adalah contoh kode untuk melakukan pembersihan data.
+
+\subsubsection{Penamaan Kolom}
+Penamaan kolom dilakukan untuk mempermudah pemanggilan kolom. Berikut adalah contoh kode untuk melakukan penamaan kolom.
+
+\begin{lstlisting}
+    # rename above columns to snake case
+    features = features.rename(columns={'Login Timestamp': 'login_timestamp', 'User ID': 'user_id', 'Round-Trip Time [ms]':'round_trip','Region':'region', 'City':'city', 'ASN':'asn', 'IP Address': 'ip_address', 'Country': 'country', 'User Agent String': 'user_agent_string','Device Type': 'device_type', 'Browser Name and Version': 'browser', 'Is Account Takeover':'is_account_takeover', 'OS Name and Version':'os_detail','Login Successful':'is_login_success','Is Attack IP':'is_attack_ip'})
+    \end{lstlisting}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Original Column Name} & \textbf{New Column Name} \\ \hline
+        Login Timestamp & login\_timestamp \\ 
+        User ID & user\_id \\ 
+        Round-Trip Time [ms] & round\_trip \\ 
+        Region & region \\ 
+        City & city \\ 
+        ASN & asn \\ 
+        IP Address & ip\_address \\ 
+        Country & country \\ 
+        User Agent String & user\_agent\_string \\ 
+        Device Type & device\_type \\ 
+        Browser Name and Version & browser \\ 
+        Is Account Takeover & is\_account\_takeover \\ 
+        OS Name and Version & os\_detail \\ 
+        Login Successful & is\_login\_success \\ 
+        Is Attack IP & is\_attack\_ip \\ \hline
+        \end{tabular}
+        \caption{Column Renaming in DataFrame}
+        \label{tab:column_renaming}
+        \end{table}
+
+\subsubsection{Penyaringan User Agent dan Device Type}
+Hal ini dilakukan untuk membatasi jumlah dataset dan device type yang bertujuan mengurangi waktu komputasi dalam pembuatan model. Berikut adalah contoh kode untuk melakukan penyaringan user agent dan device type. 
+
+\begin{lstlisting}
+    # check lenght in column user_agent_string
+    features['length'] = features['user_agent_string'].apply(
+        lambda row: min(len(row), len(row)) if isinstance(row, str) else None
+    )
+    print(features['length'].mean())
+    \end{lstlisting}
+
+    Kode di atas digunakan untuk mengetahui panjang rata-rata string pada kolom 'User Agent String'. Hasilnya adalah 136.652141700553. 
+    Setelah itu dilakukan penyaringan data dengan cara menghapus data yang memiliki panjang string lebih dari 136. Berikut adalah contoh kode untuk melakukan penyaringan data.
+
+\begin{lstlisting}
+    # only keep rows with device type desktop
+    features = features[features.device_type == 'desktop']
+    # filter the DataFrame based on the length of column 'user_agent_string'
+    features = features[features['user_agent_string'].str.len() < 136]
+    \end{lstlisting}
+
+    Setelah itu dilakukan penyaringan data dengan cara menghapus data yang memiliki device type selain 'desktop'.
+
+\subsection{Menghapus Kolom yang Tidak Diperlukan}
+Pada tahap ini dilakukan penghapusan kolom yang tidak diperlukan. Kolom yang dihapus adalah kolom 'Round-Trip Time [ms]', 'Index', 'Is Attack IP', 'Is Account Takeover', 'User ID', 'Token', 'Device Type', dan 'Length'. Berikut adalah contoh kode untuk menghapus kolom yang tidak diperlukan.
+
+\begin{lstlisting}
+    # drop unsued columns
+    features = features.drop(['round_trip', 'index', 'is_attack_ip', 'is_account_takeover', 'user_id', 'token', 'device_type', 'length'], axis=1, inplace=True)
+    \end{lstlisting}
+
+Hasil keluaran dari tahap ini adalah sebagai berikut. 
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Column Name} & \textbf{Data Type} & \textbf{\#Distinct} & \textbf{NA Values} \\ \hline
+    login\_timestamp & object & 30000 & 0 \\ 
+    ip\_address & object & 17387 & 0 \\ 
+    country & object & 75 & 0 \\ 
+    region & object & 273 & 14 \\ 
+    city & object & 1414 & 7 \\ 
+    asn & int64 & 792 & 0 \\ 
+    user\_agent\_string & object & 637 & 0 \\ 
+    browser & object & 167 & 0 \\ 
+    os\_detail & object & 61 & 0 \\ 
+    is\_login\_success & bool & 2 & 0 \\ \hline
+    \end{tabular}
+    \caption{Revised Initial Exploratory Data Analysis}
+    \label{tab:revised_initial_eda}
+    \end{table}
+
+    Berdasarkan tabel di atas, diperoleh 30000 data, dengan 10 kolom, dan ada 14 data yang memiliki nilai kosong pada kolom 'Region' dan 7 data yang memiliki nilai kosong pada kolom 'City'.
+
+
+\section{Implementasi Pemilihan Fitur}
+Pada bagian ini akan dijelaskan mengenai implementasi pemilihan fitur. Pemilihan fitur dilakukan dengan cara memilih fitur yang memiliki korelasi tinggi dengan target. Berikut adalah tahapan pemilihan fitur.
+
+\subsubsection{Eksplorasi Tipe Data}
+Tahap ini diperlukan untuk mengetahui tipe data dari setiap kolom. Asumsi yang digunakan adalah kolom yang memiliki tipe data numerik memiliki korelasi yang lebih tinggi dibandingkan dengan kolom yang memiliki tipe data string.
+Berikut adalah contoh kode untuk mengetahui tipe data dari setiap kolom.
+
+\begin{lstlisting}
+    categorical = [var for var in df.columns if df[var].dtype=='O']
+    print('There are {} categorical variables\n'.format(len(categorical)))
+    print('The categorical variables are :\n\n', categorical)
+
+    There are 8 categorical variables
+
+    The categorical variables are :
+    ['login_timestamp', 'ip_address', 'country', 'region', 'city', 'user_agent_string', 'browser', 'os_detail']
+    \end{lstlisting}
+
+    Berikut adalah hasil keluaran dari tahap ini.
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Column Name} & \textbf{Data Type} \\ \hline
+        login\_timestamp & object \\ 
+        ip\_address & object \\ 
+        country & object \\ 
+        region & object \\ 
+        city & object \\ 
+        asn & int64 \\ 
+        user\_agent\_string & object \\ 
+        browser & object \\ 
+        os\_detail & object \\ 
+        is\_login\_success & bool \\ \hline
+        \end{tabular}
+        \caption{Data Type of Each Column}
+        \label{tab:data_type}
+        \end{table}
+
+        Berdasarkan tabel di atas, terlihat bahwa kolom 'ASN' memiliki tipe data numerik, sedangkan kolom lainnya memiliki tipe data string.
+
+
+\subsection{Encoding}
+Berdasarkan tabel di atas, terlihat bahwa kolom 'ASN' memiliki tipe data numerik, sedangkan kolom lainnya memiliki tipe data string. Oleh karena itu, perlu dilakukan encoding terhadap kolom-kolom yang memiliki tipe data string. Berikut adalah contoh kode untuk melakukan encoding.
+
+\begin{lstlisting}
+    import category_encoders as ce
+
+    # One-hot encode the categorical features
+    # encode categorical variables with ordinal encoding
+    # see def preprocess_data(df) above
+    encoder = ce.OneHotEncoder(cols= ['login_timestamp', 'ip_address', 'country', 'region', 'city', 'user_agent_string', 'browser', 'os_detail'])
+    X_train = encoder.fit_transform(X_train)
+    
+    X_test = encoder.transform(X_test)
+    X_train.head()
+    \end{lstlisting}
+
+    Berikut adalah hasil keluaran dari tahap ini.
+
+\subsection{Gini Importance}
+Setelah dilakukan encoding, maka seluruh kolom memiliki tipe data numerik. Berikut adalah contoh kode untuk melakukan pemilihan fitur menggunakan Gini Importance.
+
+\begin{lstlisting}
+    ### Gini importance 
+    # create the classifier with n_estimators = default
+    clf = RandomForestClassifier(random_state=0)
+
+    # fit the model to the training set
+    clf.fit(X_train, y_train)
+
+    # view the feature scores
+    feature_scores = pd.Series(clf.feature_importances_, index=X_train.columns).sort_values(ascending=False)
+    
+    # Top 10 important features
+    feature_scores.head(10) 
+    \end{lstlisting}
+
+    Pada kode di atas dilakukan pemilihan 10 fitur teratas. Dikarenakan jumlah fitur yang banyak, setelah dilakukkan encoding maka akan sulit untuk memvisualisasikan seluruh fitur.
+    Berikut adalah hasil keluaran dari tahap ini.
+
+    \begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Feature} & \textbf{Gini Importance} \\ \hline
+    asn & 0.017551 \\ 
+    country\_2 & 0.009943 \\ 
+    country\_4 & 0.004708 \\ 
+    country\_6 & 0.003670 \\ 
+    ip\_address\_23 & 0.003618 \\ 
+    os\_detail\_1 & 0.003317 \\ 
+    browser\_1 & 0.002975 \\ 
+    os\_detail\_16 & 0.002832 \\ 
+    user\_agent\_string\_49 & 0.002508 \\ 
+    browser\_2 & 0.002213 \\ \hline
+    \end{tabular}
+    \caption{Gini Importance of Each Feature}
+    \label{tab:gini_importance}
+    \end{table}
+
+    Dalam tabel di atas, jika di lakukkan pengelompokkan maka akan terlihat bahwa fitur 'asn', 'country', 'ip\_address', 'os\_detail', 'browser', dan 'user\_agent\_string' memiliki nilai Gini Importance yang tinggi. 
+    Namun, hanya 4 group teratas yang memiliki nilai Gini Importance yang tinggi, yaitu 'asn', 'country', 'ip\_address', dan 'os\_detail' yang akan digunakan sebagai fitur dalam pembuatan model.
+
+\section{Pembuatan Random Forest}
+Pada bagian ini akan dijelaskan mengenai implementasi pembuatan Random Forest. Pembuatan Random Forest dapat dilakukan setelah memilih fitur yang memiliki korelasi tinggi dengan target. Berikut adalah tahapan pembuatan Random Forest.
+Dari proses eksplorasi tipe data tabel 5.7 dan 5.2.2 pemilihan target, maka diperoleh bahwa kolom 'Login Successful' memiliki korelasi yang tinggi dengan target. Oleh karena itu, kolom ini dipilih sebagai target.
+\subsection{Pembagian Data}
+Pada tahap ini dilakukan pembagian data meliputi
+
+\subsubsection{Pembagian Data Fitur dan Target}
+Pada tahap ini dilakukan pembagian data fitur dan target. Berikut adalah contoh kode untuk melakukan pembagian data fitur dan target.
+\begin{lstlisting}
+    # Separate the features (X) and the target (y)
+    X = df_encoded.drop(columns=['is_login_success'])
+    y = df_encoded['is_login_success']
+    \end{lstlisting}
+
+    Kode di atas digunakan untuk memisahkan fitur dan target. Fitur disimpan pada variabel X, sedangkan target disimpan pada variabel y.
+
+\subsubsection{Pembagian Data Training dan Data Testing}
+Pada tahap ini dilakukan pembagian data training dan data testing. Berikut adalah contoh kode untuk melakukan pembagian data training dan data testing.
+\begin{lstlisting}
+    # Split the data into training and test sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state=42)
+\end{lstlisting}
+
+    Kode di atas digunakan untuk membagi data menjadi data training dan data testing. Data training disimpan pada variabel X\_train dan y\_train, sedangkan data testing disimpan pada variabel X\_test dan y\_test.
+    Set pelatihan digunakan untuk melatih model, dan set pengujian digunakan untuk mengevaluasi performa model pada data yang tidak terlihat. 
+    Fungsi train\_test\_split dari modul sklearn.model\_selection digunakan untuk melakukan ini. Parameter test\_size disetel ke 0,3, artinya 30\% data akan digunakan untuk set pengujian, dan sisanya 70\% akan digunakan untuk set pelatihan. Parameter random\_state disetel ke 42 untuk memastikan bahwa pemisahan yang dihasilkan dapat direproduksi.
+
+\subsection{Pembuatan Model dan Pelatihan Model}
+Pada tahap ini dilakukan pembuatan model. Berikut adalah contoh kode untuk melakukan pembuatan model.
+\begin{lstlisting}
+    # Create the classifier with n_estimators = 0
+    clf = RandomForestClassifier(random_state=0)
+
+    # Fit the model to the data
+    clf.fit(X_train, y_train)
+\end{lstlisting}
+    
+Kode Python yang dipilih ini menginisialisasi dan melatih klasifikasi Random Forest. Berikut adalah penjelasannya:
+
+\begin{enumerate}
+\item \textbf{Menginisialisasi klasifikasi Random Forest:} Baris 
+2 membuat instance baru dari klasifikasi Random Forest. Parameter \texttt{random\_state} diatur ke 0 untuk reproduktibilitas. Ini berarti bahwa pemisahan yang dihasilkan dapat direproduksi, yang penting untuk hasil yang konsisten di berbagai penjalanan.
+\item \textbf{Melatih klasifikasi Random Forest:} Baris ke 5 melatih klasifikasi Random Forest pada data latihan. Metode \texttt{fit} menerima dua argumen: fitur (\texttt{X\_train}) dan target (\texttt{y\_train}). Fitur adalah input untuk model, dan target adalah apa yang ingin kita prediksi dari model.
+\end{enumerate}
+
+Kelas \texttt{RandomForestClassifier} memiliki banyak parameter yang dapat disesuaikan untuk mengoptimalkan kinerja model. Dalam kasus ini, hanya parameter \texttt{random\_state} yang diatur, dan semua parameter lain dibiarkan sebagai nilai default.
+
+\subsection{Evaluasi Model}
+Pada tahap ini dilakukan evaluasi model. Berikut adalah contoh kode untuk melakukan evaluasi model.
+\begin{lstlisting}
+    # Make predictions on the test set
+    y_pred = clf.predict(X_test)
+    
+    # Evaluate the accuracy of the model
+    accuracy = accuracy_score(y_test, y_pred)
+    print('Accuracy:', accuracy)
+    
+    # Calculate precision, recall, and F1 score
+    precision = precision_score(y_test, y_pred)
+    recall = recall_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+    
+    print('Precision:', precision)
+    print('Recall:', recall)
+    print('F1 Score:', f1)
+\end{lstlisting}
+
+Kode di atas digunakan untuk melakukan evaluasi model. Berikut adalah penjelasannya:
+Tahap ini mengevaluasi kinerja model machine learning menggunakan beberapa metrik: akurasi, presisi, recall, dan skor F1. Berikut adalah penjelasannya:
+
+\begin{enumerate}
+\item \textbf{Evaluasi Akurasi:} Beberapa baris pertama menghitung akurasi prediksi model. Akurasi adalah proporsi prediksi yang benar dari semua prediksi. Ini adalah metrik umum untuk masalah klasifikasi. Fungsi \texttt{accuracy\_score} dari \texttt{sklearn.metrics} digunakan untuk menghitung akurasi. Hasilnya dicetak ke konsol.
+\item \textbf{Menghitung Presisi, Recall, dan Skor F1:} Sisa kode menghitung presisi, recall, dan skor F1 dari prediksi model. Ini adalah metrik umum lainnya untuk masalah klasifikasi.
+   \begin{itemize}
+   \item Presisi adalah proporsi prediksi positif benar dari semua prediksi positif. Ini adalah ukuran berapa banyak prediksi positif yang sebenarnya benar.
+   \item Recall (juga dikenal sebagai sensitivitas) adalah proporsi prediksi positif benar dari semua positif aktual. Ini adalah ukuran berapa banyak instansi positif aktual yang dapat diidentifikasi model.
+   \item Skor F1 adalah rata-rata harmonik dari presisi dan recall. Ini memberikan skor tunggal yang menyeimbangkan kedua kekhawatiran presisi dan recall dalam satu angka.
+   \end{itemize}
+\end{enumerate}
+
+Metrik ini dihitung menggunakan fungsi \texttt{precision\_score}, \texttt{recall\_score}, dan \texttt{f1\_score} dari \texttt{sklearn.metrics}, masing-masing. Hasilnya kemudian dicetak ke konsol.
+
+\subsection{Visualisasi Model}
+Pada tahap ini dilakukan visualisasi model. Berikut adalah contoh kode untuk melakukan visualisasi model.
+\begin{lstlisting}
+    # Visualize a single decision tree
+    plt.figure(figsize=(12,12))
+    tree = plot_tree(clf.estimators_[0], feature_names=X.columns, filled=True, rounded=True, fontsize=10)
+    \end{lstlisting}
+
+    Kode di atas digunakan untuk melakukan visualisasi model. Berikut adalah penjelasannya:
+    Tahap ini memvisualisasikan satu pohon keputusan dari model Random Forest. Ini memberikan gambaran tentang bagaimana model membuat prediksi. Berikut adalah penjelasannya:
+
+    \begin{enumerate}
+    \item \textbf{Menginisialisasi plot:} Baris 2 menginisialisasi plot dengan ukuran 12 x 12 inci. Ini memastikan bahwa plot cukup besar untuk ditampilkan dengan jelas.
+    \item \textbf{Membuat plot:} Baris 3 membuat plot menggunakan fungsi \texttt{plot\_tree} dari \texttt{sklearn.tree}. Ini mengambil tiga argumen: model (\texttt{clf.estimators\_[0]}), nama fitur (\texttt{X.columns}), dan beberapa parameter untuk mengontrol penampilan plot. Hasilnya adalah plot pohon keputusan.
+    \end{enumerate}
+
+    % \begin{figure}[H]
+    %     \centering
+    %     \includegraphics[width=0.8\textwidth]{img/decision_tree.png}
+    %     \caption{Decision Tree}
+    %     \label{fig:decision_tree}
+    %     \end{figure}
+
+        Gambar 5.1 menunjukkan plot pohon keputusan. Setiap node dalam pohon mewakili satu aturan yang digunakan untuk membuat prediksi. Pada node akar, model memeriksa apakah nilai fitur 'asn' lebih kecil dari 0,5. Jika iya, maka model akan memprediksi bahwa pengguna tidak berhasil login. Jika tidak, maka model akan memeriksa apakah nilai fitur 'asn' lebih kecil dari 1,5. Jika iya, maka model akan memprediksi bahwa pengguna berhasil login. Jika tidak, maka model akan memeriksa apakah nilai fitur 'asn' lebih kecil dari 2,5. Jika iya,
+        
+
+\section{Pembagunan Sistem}
+Sistem dibangun berbasis API dengan menggunakan bahasa pemrograman Python 3.9.13 . Sistem ini menggunakan beberapa library, yaitu:
+1. Anaconda 3 versi 2022.10 untuk mengatur lingkungan kerja Python.
+2. Flask versi 2.0.2 untuk membuat API.
+3. Pandas versi 1.3.4 untuk memanipulasi data.
+4. Scikit-learn versi 1.0 untuk membangun model.
+5. Pickle versi 4.0 untuk menyimpan model.
+6. Algoritma SHA512 untuk membuat token.
+7. Pytest versi 6.2.5 untuk melakukan testing.
+
+\subsection{Pembangunan API}
+
+
+
+

@@ -84,6 +84,10 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{pgf-pie}
+% add by me
+\usepackage{tabularx}
+\usepackage{listings}
+\usepackage{xcolor}
 \usetikzlibrary{calc}
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows}
@@ -759,6 +763,19 @@
 	tabsize=2
 }
 \lstset{style=mystyle}
+
+% \lstset{
+%   language=Python,
+%   numbers=left,
+%   commentstyle=\color{green},
+%   keywordstyle=\color{blue},
+%   stringstyle=\color{red},
+%   basicstyle=\ttfamily,
+%   columns=flexible,
+%   breaklines=true,
+%   frame=single,
+%   showstringspaces=false,
+% }
 
 
 %======================================
