@@ -92,5 +92,47 @@ Rangkuman penelitian sebelumnya dapat dilihat pada Tabel 2.1. Dalam studi
 ini ditawarkan pendekatan autentikasi berbasis risiko dengan menggunakan dalam
 kasus machine to machine device yang dikaitkan dalam FHIR service.
 
-% todo: tabel 2.1
+\begin{longtable}{|p{1.7cm}|p{3.8cm}|p{3.5cm}|p{5cm}|}
+    \caption{Tinjauan Pustaka}\\
+    \hline
+    \textbf{Nama} & \textbf{Penelitian} & \textbf{Metode} & \textbf{Hasil} \\
+    \hline
+    \endfirsthead
+    \multicolumn{4}{c}{{\bfseries Table \thetable:} Lanjutan Tinjauan Pustaka} \\
+    \hline
+    \textbf{Nama} & \textbf{Penelitian} & \textbf{Metode} & \textbf{Hasil} \\
+    \hline
+    \endhead
+    \hline
+    \multicolumn{4}{r}{{Berlanjut di halaman selanjutnya}} \\
+    \endfoot
+    \hline
+    \endlastfoot
+    Thomas dkk (2017) & Pencurian kredensial dan menilai risiko yang ditimbulkannya bagi jutaan pengguna & Framework otomatis yang menggabungkan data Google Search dan Gmail untuk mengidentifikasi lebih dari satu miliar korban kebocoran kredensial, kit phising, dan keylogger. & Mengidentifikasi 788.000 calon korban keylogger siap pakai; 12,4 juta calon korban kit phishing; 1,9 miliar nama pengguna dan kata sandi yang terungkap melalui pelanggaran data dan diperdagangkan di forum pasar gelap. \\
+    \hline
+    Stephan Wiefling dkk (2022) & Analisis RBA pada layanan online skala besar dunia nyata & Simple model, extended model, login dataset & RBA memblokir 99,5\% penyerang naif. Simple model: targeted attackers dropped dari 0.9552 menjadi 0.5295. \\
+    \hline
+    Cabarcos dkk (2019) & Survey studi mengenai cara dinamis memilih mekanisme terbaik untuk mengautentikasi pengguna tergantung pada beberapa faktor & CARS-AD (Vector Space Model (VSM)), ASSO ( SVM), Reinforced AuthN (Logistic Regresion) & Pengurangan overhead kata sandi (masing-masing 42\% dan 47\% lebih sedikit permintaan kata sandi). \\
+    \hline
+    Doerfler dkk (2019) & Manfaat fitur login keamanan untuk mencegah pengambilalihan akun & MFA & Memblokir lebih dari 94\% upaya pembajakan. \\
+    \hline
+    Prasad dkk (2017) & Meningkatkan Layanan Mobile Banking menggunakan Otentikasi Berbasis Lokasi & GPS dan GPRS & GPS digunakan untuk menyediakan autentikasi lokasi, banyak informasi terkait satelit yang tidak mudah diimplementasikan. \\
+    \hline
+    Agarwal dkk (2016) & Mengevaluasi strategi autentikasi ulang untuk ponsel & Implicit authentication, Context-aware authentication, App-specific authentication & Dalam hal kinerja tugas, konfigurasi yang diusulkan bekerja sebaik konfigurasi default, namun konfigurasi yang diusulkan dianggap lebih nyaman dan tidak terlalu mengganggu oleh pengguna. \\
+    \hline
+    Stephan Wiefling dkk (2021) & Memperkuat otentikasi berbasis kata sandi menggunakan Otentikasi berbasis risiko (RBA) & simple model (SIMPLE), extended model (EXTEND), Data e-learning website untuk mahasiswa kedokteran & RBA dapat mencapai tingkat autentikasi ulang yang rendah untuk pengguna yang sah saat memblokir lebih dari 99,45\% serangan yang ditargetkan dengan model EXTEND. \\
+    \hline
+    Misbahuddin dkk (2017) & Desain sistem otentikasi berbasis risiko menggunakan machine learning & Profile analysis block, Risk Engine, Adaptive Authentication Block, SVM & Teknik yang diajukan menawarkan tiga pilihan untuk risk engine, sehingga dapat beroperasi dalam situasi yang berbeda. \\
+    \hline
+    Taneja dkk (2013) & Mendeteksi perangkat IoT (M2M) yang disusupi menggunakan perilaku mobilitas & Wireless gateway checking & Metode ini mendeteksi perangkat yang disusupi untuk skenario dimana perilaku device telah berubah. \\
+    \hline
+    Dasgupta dkk (2018) & Multifactor authentication menggunakan fuzzy decision support system & fuzzy, genetic algorithm & Perbandingan akurasi dengan metode lain: FIDO 89\%, Microsoft Azure 92\%, Adaptive MFA 95\%. \\
+    \hline
+    Zhang dkk (2012) & Authentikasi dan otorisasi berdasarkan lokasi & Spoofing on the hardware level (GPS), Spoofing on the OS level, Spoofing on the application level (IP, MAC) & Mekanisme autentikasi dan otorisasi berbasis lokasi menjadi lebih aman dan valid. \\
+    \hline
+    Alam dkk (2013) & Mendeteksi malware pada Android dengan random forest & Random forest, dataset antimalware & 99,9 persen sampel benar. \\
+    \hline
+    Speicher dkk (2019) & Perbandingan metode pemilihan variabel random forest untuk pemodelan prediksi klasifikasi & Random forest, kondisional random forest & Standar random forest memiliki waktu komputasi dan error rate yang lebih baik dibandingkan dengan kondisional random forest. \\
+    \hline
+\end{longtable}
 

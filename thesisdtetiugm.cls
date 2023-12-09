@@ -65,7 +65,7 @@
 \usepackage{tocloft}% edit font toc
 \usepackage{fancyhdr}% page number
 \usepackage[cmex10]{amsmath}
-\usepackage{cite}
+% \usepackage{cite}
 \usepackage{multirow}
 \usepackage{titlesec}
 \usepackage{ragged2e}% text alignment
@@ -92,8 +92,7 @@
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows}
 \usetikzlibrary{shapes}
-\bibliographystyle{IEEEtran}
-
+\bibliographystyle{plain}
 % Page break for equation
 \allowdisplaybreaks
 
