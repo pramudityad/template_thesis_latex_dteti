@@ -13,7 +13,7 @@ diusulkan. Salah satu teknik yang paling umum adalah menggunakan algoritma
 penilaian risiko untuk secara dinamis menyesuaikan tingkat otentikasi berdasarkan
 tingkat risiko.
 
-Studi yang dilakukan oleh Thomas dkk. (2017) membahas resiko dari password
+Studi yang dilakukan oleh \cite{thomas_data_2017} membahas resiko dari password
 yang dicuri dan bagaimana kebocoran kredensial dapat terjadi. Tidak hanya itu
 namun studi tersebut juga menampilkan situs situs yang banyak mengalami
 kebocoran data. Resiko yang paling besar dapat terjadi adalah data-data kita
@@ -21,32 +21,31 @@ disalahgunakan hingga mengalami kerugian material. Sedangkan phising menjadi
 faktor utama penyebab terjadinya kebocoran kredensial dan disusul oleh
 keyloggers.
 
-Stephan Wiefling dkk. (2022) mengemukakan Risk-Based Authentication
+\cite{stephan_wiefling_pump_2022} mengemukakan Risk-Based Authentication
 (RBA) dapat memperkirakan apakah login itu sah atau merupakan upaya
 pengambilalihan akun. Ini dilakukan dengan memantau dan merekam sekumpulan
 fitur yang tersedia dalam konteks login. Fitur potensial berkisar dari jaringan (mis.,
 alamat IP), perangkat atau klien (mis., string agen pengguna), hingga informasi
-biometrik perilaku (mis., waktu masuk).Selain itu kelebihan RBA juga telah disurvey oleh Cabarcos dkk. (2019)
+biometrik perilaku (mis., waktu masuk).Selain itu kelebihan RBA juga telah disurvey oleh \cite{cabarcos_survey_2019} yang
 menganalisis literatur tentang autentikasi adaptif berdasarkan prinsip-prinsip desain
 yang terkenal dalam disiplin sistem berbasis resiko dan tantangan nya adalah tidak
 ada satu ukuran yang cocok untuk semua dalam keamanan, tidak ada mekanisme baru yang akan menggantikan semua mekanisme lainnya dan diterima sebagai
-solusi universal. Doerfler dkk. (2019) menggambarkan bahwa tantangan login
+solusi universal. \cite{doerfler_evaluating_2019} menggambarkan bahwa tantangan login
 bertindak sebagai penghalang penting untuk pembajakan, tetapi gesekan dalam
 proses menyebabkan pengguna yang sah gagal masuk, meskipun pada akhirnya
 dapat mengakses akun mereka lagi.
 
 Banyak sistem yang sudah mengimplementasikan RBA karena kelebihannya,
-studi yang dilakukan oleh Prasad dkk. (2017) menjadi awal mula bagaimana sistem
+studi yang dilakukan oleh \cite{prasad_study_2017} menjadi awal mula bagaimana sistem
 perbankan mulai menerapkan autentikasi berdasarkan risiko dengan kombinasi
 lokasi. Sedangkan dalam sektor kesehatan sendiri autentikasi standar seperti user
 dan password masih banyak digunakan, karena sistem IT kesehatan masih fokus
-dalam mengembangkan The Fast Health Interoperability Resources (FHIR) Ayaz
-dkk. (2021)
+dalam mengembangkan The Fast Health Interoperability Resources (FHIR) \cite{ayaz_correction_2021}
 
 Selanjutnya, beberapa studi dalam literatur mengusulkan metode otentikasi
 berbasis risiko yang menggunakan berbagai faktor seperti lokasi, waktu, dan jenis
 perangkat untuk menentukan tingkat risiko suatu sesi. Sebagai contoh, sebuah
-penelitian oleh Agarwal dkk. (2016) mengusulkan sistem RBA berbasis lokasi yang
+penelitian oleh \cite{agarwal_ask_2016} mengusulkan sistem RBA berbasis lokasi yang
 menggunakan lokasi perangkat pengguna untuk menentukan tingkat risiko suatu
 sesi. Studi ini menemukan bahwa sistem yang diusulkan secara efektif
 meningkatkan keamanan sistem dengan tetap mempertahankan kegunaan.
@@ -54,31 +53,31 @@ meningkatkan keamanan sistem dengan tetap mempertahankan kegunaan.
 Penggunaan RBA masih terbatas pada major digital service, hal ini sebagian
 disebabkan oleh kurangnya pengetahuan dan implementasi terbuka yang
 memungkinkan penyedia layanan mana pun untuk meluncurkan perlindungan RBA
-kepada penggunanya. Untuk menutup kesenjangan ini, Stephan Wiefling dkk.
-(2021) memberikan analisis tentang karakteristik RBA dalam penerapan praktis
+kepada penggunanya. Untuk menutup kesenjangan ini, \cite{stephan_wiefling_whats_2021}
+memberikan analisis tentang karakteristik RBA dalam penerapan praktis
 sekaligus memberikan dataset yang dapat digunakan secara umum.
-Penelitian lain Misbahuddin dkk. (2017) mengusulkan sistem RBA berbasis
+Penelitian lain \cite{misbahuddin_design_2017} mengusulkan sistem RBA berbasis
 perangkat yang menggunakan jenis perangkat dan status perangkat untuk
 menentukan tingkat risiko suatu sesi. Penelitian tersebut menemukan bahwa sistem
 yang diusulkan secara efektif meningkatkan keamanan sistem dengan tetap
 mempertahankan kegunaan menggunakan machine learning.
 
 Penggunaan analisis berbasis risiko dalam konteks machine to machine dibahas
-dalam studi yang dilakukan oleh Taneja (2013). Mekanisme keamanan tertentu
+dalam studi yang dilakukan oleh \cite{taneja_analytics_2013}. Mekanisme keamanan tertentu
 mengasumsikan bahwa akhir perangkat sudah diamankan. Dalam jaringan IoT,
 perangkat IoT itu sendiri dapat dikompromikan. Seorang penyerang dapat mencuri
 perangkat, mendapatkan akses mengaksesnya dan menggunakannya untuk
 serangan yang lebih merusak.
 
-Roy dan Dasgupta (2018) sudah meneliti bahwa fuzzy dapat menjadi terobosan
+\cite{roy_fuzzy_2018} sudah meneliti bahwa fuzzy dapat menjadi terobosan
 dalam menentukan multifaktor autentikasi. Selain itu, banyak penelitian juga telah
 mengusulkan penggunaan algoritma pembelajaran mesin seperti pohon keputusan,
 Random Forest, dan jaringan syaraf untuk meningkatkan kinerja RBA. Sebagai
-contoh, sebuah penelitian oleh Zhang, F dkk. (2012) mengusulkan sistem RBA
+contoh, sebuah penelitian oleh \cite{zhang_location-based_2012} mengusulkan sistem RBA
 yang menggunakan algoritma Random Forest untuk menentukan tingkat risiko dari
 sebuah sesi. Penelitian ini menemukan bahwa sistem yang diusulkan mencapai
 tingkat akurasi yang tinggi dan meningkatkan keamanan sistem. Dalam studi lain
-Alam dan Vuong (2013), Speiser dkk. (2019) menunjukkan bahwa Random Forest
+\cite{alam_random_2013}, \cite{cabarcos_survey_2019} menunjukkan bahwa Random Forest
 adalah pilihan yang baik karena dapat secara efektif mengklasifikasikan transaksi
 berdasarkan tingkat resikonya menggunakan serangkaian fitur yang berasal dari
 data transaksi. Random Forest adalah algoritma pembelajaran mesin yang kuat yang
@@ -86,7 +85,7 @@ dapat menangani kumpulan data besar dan mampu menangani kebisingan dan nilai
 yang hilang dengan baik. Selain itu, dapat memberikan skor kepentingan fitur, yang
 dapat digunakan untuk mengidentifikasi fitur yang paling penting untuk klasifikasi
 risiko. Secara keseluruhan, Random Forest adalah algoritma pembelajaran mesin
-yang efektif dan banyak digunakan untuk otentikasi M2M berbasis risiko.
+yang efektif.
 
 Rangkuman penelitian sebelumnya dapat dilihat pada Tabel 2.1. Dalam studi
 ini ditawarkan pendekatan autentikasi berbasis risiko dengan menggunakan dalam

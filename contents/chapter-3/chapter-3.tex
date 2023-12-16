@@ -1,12 +1,12 @@
 \chapter{Landasan Teori}
 
 \section{FHIR (Fast Healthcare Interoperability Resources)}
-FHIR \textit{(Fast Healthcare Interoperability Resources)} menurut Mark L.Braunstein (2022) adalah standar pertukaran data kesehatan yang dikembangkan oleh HL7 (Health Level Seven International). FHIR dapat digunakan untuk mengintegrasikan sistem kesehatan yang berbeda dan mengijinkan pertukaran data yang cepat dan aman antara sistem yang berbeda.
-\begin{figure}
+FHIR \textit{(Fast Healthcare Interoperability Resources)} menurut \cite{mark_l_braunstein_fhir_2022} adalah standar pertukaran data kesehatan yang dikembangkan oleh HL7 (Health Level Seven International). FHIR dapat digunakan untuk mengintegrasikan sistem kesehatan yang berbeda dan mengijinkan pertukaran data yang cepat dan aman antara sistem yang berbeda.
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{contents/chapter-3/FHIR-img-1.png}
     \caption{Gambaran FHIR}
-    \label{fig:my_label}
+    \label{fig:fhir}
 \end{figure}
 FHIR menyediakan kumpulan resource yang dapat digunakan untuk pertukaran data kesehatan, seperti informasi pasien, informasi medis, dan informasi billing. Resource ini dapat ditransmisikan dalam format yang berbeda, seperti JSON atau XML. FHIR juga menyediakan API (Application Programming Interface) yang dapat digunakan untuk mengakses data dan layanan yang tersedia melalui jaringan.
 
@@ -14,14 +14,14 @@ FHIR dapat digunakan untuk meningkatkan interoperabilitas sistem kesehatan dan m
 
 
 \section{Machine-to-Machine (M2M) Authentication}
-Machine-to-Machine (M2M) authentication adalah proses verifikasi yang digunakan untuk mengautentikasi perangkat atau mesin yang terhubung ke jaringan, seperti komputer, perangkat IoT, atau perangkat mobile. Proses ini memastikan bahwa hanya perangkat yang sah yang dapat terhubung ke jaringan dan mengakses data atau layanan yang tersedia seperti skema pada Gambar 3.1.
+Machine-to-Machine (M2M) authentication adalah proses verifikasi yang digunakan untuk mengautentikasi perangkat atau mesin yang terhubung ke jaringan, seperti komputer, perangkat IoT, atau perangkat mobile. Proses ini memastikan bahwa hanya perangkat yang sah yang dapat terhubung ke jaringan dan mengakses data atau layanan yang tersedia seperti skema pada Gambar \ref*{fig:m2m}.
 
 M2M authentication dapat menggunakan berbagai metode, seperti pengenalan suara, pengenalan wajah, pengenalan sidik jari, atau kombinasi dari metode tersebut. Dalam beberapa kasus, M2M authentication juga dapat menggunakan teknologi kriptografi, seperti enkripsi atau sertifikat digital, untuk memastikan keamanan komunikasi antar perangkat.
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{contents/chapter-3/m2m_auth.png}
     \caption{Skema M2M Authentication}
-    \label{fig:my_label}
+    \label{fig:m2m}
 \end{figure}
 
 M2M authentication juga dapat digabungkan dengan metode risk-based authentication untuk meningkatkan keamanan sistem. Dengan menganalisis faktor- faktor yang dapat meningkatkan risiko, seperti lokasi geografis, waktu akses, dan jenis perangkat yang digunakan, sistem dapat mengambil tindakan yang sesuai untuk menangani ancaman potensial.
@@ -29,9 +29,9 @@ M2M authentication juga dapat digabungkan dengan metode risk-based authenticatio
 \section{Klien Kredensial}
 Klien membuat permintaan ke server otorisasi dengan mengirimkan ID klien, rahasia klien, bersama dengan audiens dan klaim-klaim lainnya. Server otorisasi memvalidasi permintaan tersebut, dan, jika berhasil, mengirimkan respons dengan token akses. Klien sekarang dapat menggunakan token akses untuk meminta sumber daya yang dilindungi dari server sumber daya.
 Karena klien harus selalu menjaga rahasia klien, pemberian ini hanya dimaksudkan untuk digunakan pada klien terpercaya. Dengan kata lain, klien yang menyimpan rahasia klien harus selalu digunakan di tempat di mana tidak ada risiko rahasia tersebut disalahgunakan. Sebagai contoh, meskipun mungkin ide yang baik untuk menggunakan hibah kredensial klien di sistem internal yang mengirimkan laporan di seluruh web ke bagian lain dari sistem Anda, namun tidak dapat digunakan untuk alat publik yang dapat diakses oleh pengguna eksternal mana pun.
-Berikut ini adalah permintaan HTTP yang relevan pada Tabel 3.1 berikut:
+Berikut ini adalah permintaan HTTP yang relevan pada Tabel \ref{tab:req_http} berikut:
 
-\begin{table}[h]
+\begin{table}[H]
     \caption{Permintaan HTTP}
     \vspace{0.5em}
     \centering
@@ -52,10 +52,10 @@ Berikut ini adalah permintaan HTTP yang relevan pada Tabel 3.1 berikut:
         & Audiens \\
         \hline
     \end{tabular}
-    \label{Tab: Tabel Tinggi Berat}
+    \label{tab:req_http}
 \end{table}
 
-Sedangkan berikut contoh respon HTTP yang relevan pada Tabel 3.2 berikut:
+Sedangkan berikut contoh respon HTTP yang relevan pada Tabel \ref{tab:res_http} berikut:
 
 \begin{table}[h]
     \caption{Respon HTTP}
@@ -86,7 +86,7 @@ Sedangkan berikut contoh respon HTTP yang relevan pada Tabel 3.2 berikut:
         \} & \\
         \hline
     \end{tabular}
-    \label{Tab: Tabel Tinggi Berat}
+    \label{tab:res_http}
 \end{table}
 
 \section{\textit{Risk Based Authentication}}

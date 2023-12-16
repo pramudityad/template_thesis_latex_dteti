@@ -66,6 +66,8 @@
 \usepackage{fancyhdr}% page number
 \usepackage[cmex10]{amsmath}
 % \usepackage{cite}
+\usepackage{natbib}
+\usepackage{float}
 \usepackage{multirow}
 \usepackage{titlesec}
 \usepackage{ragged2e}% text alignment
@@ -92,7 +94,7 @@
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows}
 \usetikzlibrary{shapes}
-\bibliographystyle{plain}
+\bibliographystyle{plainnat}
 % Page break for equation
 \allowdisplaybreaks
 
