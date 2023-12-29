@@ -97,6 +97,9 @@
 \bibliographystyle{plainnat}
 % Page break for equation
 \allowdisplaybreaks
+% equation
+\usepackage{amsmath, amssymb}
+
 
 %======================================
 %% Localise the Strings
