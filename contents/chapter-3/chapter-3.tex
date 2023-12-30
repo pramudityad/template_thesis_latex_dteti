@@ -216,4 +216,27 @@ prediksi hanya berlaku untuk suatu tree yang sampel bootstrapnya tidak mengandun
     
 \subsection{\textit{Variable Importance Measure (VIM)}}
 Penggunaan analisis dalam RF secara umum sangat sulit untuk melakukan interpretasi dalam memperoleh informasi. Salah satu solusi untuk mempermudah memperoleh informasi dalam RF ialah dengan mengidentifikasi Variable Importance Measure (VIM) untuk variabel prediktor. Apabila variabel importance dapat diidentifikasi, maka hasil RF akan diperoleh metode penyeleksian variabel yang berpengaruh penting terhadap pembentukan tree dalam RF. Estimasi pemilihan variabel importance dalam random forest dapat dilakukan dengan melihat berapa banyak kenaikan prediksi error (OOB) data untuk variabel terpilih sementara yang lainnya tidak berubah Liaw \& Wiener (2002).
-Metode representatif dari perhitungan pengukuran variabel importance adalah Mean Decrease Impurity (MDI) atau disebut juga dengan Mean Decrease Gini (MDG) yang diusulkan oleh Breiman pada tahun 2001. Suatu p peubah penjelas dengan h=(1,2,…,p) maka rumus mengukur tingkat kepentingan peubah penjelas Xh dengan cara berikut (Xiao Li. dkk, 2019).
+Metode representatif dari perhitungan pengukuran variabel importance adalah Mean Decrease Impurity (MDI) atau disebut juga dengan Mean Decrease Gini (MDG) yang diusulkan oleh Breiman pada tahun 2001. Suatu p peubah penjelas dengan h=(1,2,…,p) maka rumus mengukur tingkat kepentingan peubah penjelas Xh dengan cara berikut (Xiao Li. dkk, 20 19).
+\begin{equation}
+  \text{MDG}(\mathbf{x}_h) = \frac{1}{k} \sum_{t=1}^{k} \text{MDG}(\mathbf{X}_h, \mathbf{x}_t)
+  \end{equation}
+\\
+Keterangan:
+\begin{equation}
+  \text{MDG}(\mathbf{X}_h, \mathbf{x}_t) = \sum_{t \in (T), v(t) = h} \frac{N_n(t)}{n} \Delta\mathbf{x}(t)
+  \end{equation}
+
+  Selain itu, perhitungan VIM dapat juga dengan menggunakan perhitungan
+  Mean Decrease Accuracy (MDA) atau Permutation Importance yang menggunakan
+  OOB untuk membagi data sampelnya, dimana OOB memperkirakan nilai prediksi
+  dengan menghitung nilai akurasi OOB sebelum dan sesudah permutasi Xh dan
+  menghitung perbedaannya, dengan rumus sebagai berikut Strobl dkk. (2008)
+
+  \begin{equation}
+    \text{MDA}(\mathbf{x}_h) = \frac{1}{k} \sum_{t=1}^{k} \sum_{i \in \text{OOB}(t)} \frac{I(y_i = \hat{y}_i(t)) - I(y_i = \hat{y}_i, h(t))}{|\text{OOB}(t)|}
+    \end{equation}
+
+    dimana $OOB(t)$ adalah sampel $OOB$ untuk satu tree ke- $t$ , dengan t elemen dari 
+{1,2,3, … , k}, tingkat kepentingan variabel Xh dalam tree ke $- t$ adalah nilai rata-
+rata dari perbedaan antara kelas prediksi sebelum permutasi Xh yaitu $\hat{y}_i(t) = f(t)(x_i)$ dan kelas prediksi setelah permutasi Xh, yaitu $\hat{y}_{i,h}(t) = f(t)(x_{i,h})$
+dalam $i$ observasi tertentu.
