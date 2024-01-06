@@ -236,9 +236,9 @@
 \newcommand{\@university}{Universitas Gadjah Mada}
 \newcommand{\@facultyIna}{Fakultas Teknik}
 \newcommand{\@facultyEng}{Faculty of Engineering}
-\newcommand{\@departmentIna}{Departemen Teknik Elektro dan Teknologi Informasi}
+\newcommand{\@departmentIna}{DEPARTEMEN ILMU KOMPUTER DAN ELEKTRONIKA}
 \newcommand{\@departmentEng}{Department of Electrical Engineering and Information Technology}
-\newcommand{\@graduateIna}{Program Pascasarjana}
+\newcommand{\@graduateIna}{Program Magister}
 \newcommand{\@graduateEng}{Graduate Program}
 \newcommand*{\major}[1]{\newcommand{\@major}{#1}}
 \newcommand*{\departmenthead}[2]{
@@ -263,17 +263,17 @@
 				\MakeUppercase{\fontsize{14pt}{16pt}\selectfont\textbf{\@title}}\\
 				\vspace{1.5cm}
 				%\textbf{#2}\\
-				\fontsize{14pt}{16pt}SKRIPSI\\
+				% \fontsize{14pt}{16pt}SKRIPSI\\
 				\vfill
 				\includegraphics[width=0.5\textwidth]{#1}
 				\vfill
 				\iftoggle{lang}{\textbf{Disusun oleh:}}{Written by:}\\
 				\vspace{0.4em}
-				\textbf{\underline{\@authorName} \\ \@authorID \\}
+				\textbf{\underline{DAMAR ARBA PRAMUDITTA} \\ 22/501365/PPA/06386 \\}
 				\vfill
 				\textbf{
 					\iftoggle{lang}
-					{\MakeUppercase{Program Studi \@program}}
+					{\MakeUppercase{Program Studi Magister Ilmu Komputer}}
 					{\MakeUppercase{\@program \vspace{1em} Program}}\\
 					\iftoggle{lang}{\scalebox{1.0}[1.0]{\MakeUppercase{\@departmentIna}}}{\MakeUppercase{\@departmentEng}} \\
 					\iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}}
@@ -390,7 +390,7 @@
 				%\MakeUppercase{\bfseries\fontsize{14pt}{16pt}\selectfont\@title}\\
 				\textbf{\MakeUppercase{\fontsize{14pt}{16pt}\selectfont\@title}}\\
 				\vspace{1cm}
-				\textbf{\iftoggle{lang}{SKRIPSI}{THESIS}}\\
+				\textbf{\iftoggle{lang}{THESIS}}\\
 				\vspace{2cm}
 				\iftoggle{lang}
 					{Diajukan Sebagai Salah Satu Syarat untuk Memperoleh}

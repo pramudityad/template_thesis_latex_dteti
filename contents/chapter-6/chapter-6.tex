@@ -83,7 +83,7 @@ Pada tabel 6.1 ditunjukkan hasil pengujian random forest dengan menggunakan bebe
     \hline
     \end{tabularx}
     \caption{Model Parameters and Performance Metrics}
-    \label{table:1}
+    \label{table:sampel_hasil_pengujian_random_forest}
 \end{table}
 
 Tabel 6.2 adalah hasil pengujian random forest dengan menggunakan parameter yang telah dioptimasi. Ditemukan bahwa parameter yang menghasilkan performa terbaik adalah \{'max\_depth': None, 'min\_samples\_leaf': 2, 'min\_samples\_split': 2, 'n\_estimators': 200\} dengan akurasi 0.708, presisi 0.701, recall 0.968, dan F1 score 0.813.
@@ -92,6 +92,56 @@ Tabel 6.2 adalah hasil pengujian random forest dengan menggunakan parameter yang
 Analisis hasil pengujian berisi analisis terhadap hasil pengujian yang telah dilakukan. Analisis dilakukan dengan membandingkan hasil pengujian dengan spesifikasi kebutuhan yang telah ditetapkan sebelumnya. Apabila hasil pengujian sesuai dengan spesifikasi kebutuhan, maka sistem dapat dikatakan berhasil. Sebaliknya, apabila hasil pengujian tidak sesuai dengan spesifikasi kebutuhan, maka sistem dapat dikatakan gagal.
 Dalam melakukan analisis hasil pengujian, dapat digunakan beberapa metode, yaitu:
 Confusion Matrix: Implementasi confusion matrix membantu memahami sejauh mana model dapat mengidentifikasi True Positives (mesin yang diakui dengan benar), True Negatives (mesin yang ditolak dengan benar), False Positives (mesin yang salah diakui), dan False Negatives (mesin yang salah ditolak).
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+     & \textbf{Predicted: 0} & \textbf{Predicted: 1} \\
+    \hline
+    \textbf{Actual: 0} & True Negative & False Positive \\
+    \hline
+    \textbf{Actual: 1} & False Negative & True Positive \\
+    \hline
+    \end{tabular}
+    \caption{Confusion Matrix}
+    \label{table:1}
+\end{table}
+
+Hasil tertinggi yang diperoleh dari Tabel \ref{table:sampel_hasil_pengujian_random_forest} adalah sebagai berikut:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Parameter} & \textbf{Values} \\
+    \hline
+    n\_estimators & 500 \\
+    \hline
+    max\_depth & None \\
+    \hline
+    min\_samples\_split & 2 \\
+    \hline
+    min\_samples\_leaf & 2 \\
+    \hline
+    \end{tabular}
+    \caption{Hasil Pengujian Random Forest}
+    \label{table:2}
+    \end{table}
+
+Dengan hasil sebagai akurasi 0.708, presisi 0.701, recall 0.968, dan F1 score 0.813. Dengan hasil ini diperoleh akurasi yang lebih rendah dari yang diharapkan. Hal ini disebabkan oleh dataset yang digunakan tidak seimbang. Dengan demikian, model yang dihasilkan cenderung memprediksi kelas mayoritas. Untuk membuktikan hal ini, dapat dilakukan pengecekan dengan melihat presentase target pada dataset. Berikut adalah presentase target pada dataset
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{contents/chapter-6/visualize_class.png}
+    \caption{Presentase Target pada Dataset}
+    \label{fig:visualize_target}
+\end{figure}
+
+Berdasarkan Gambar \ref{fig:visualize_target}, dapat dilihat bahwa presentase target pada dataset adalah 0.5. Dengan demikian, dapat disimpulkan bahwa dataset yang digunakan tidak seimbang. Menurut (Sun dkk., 2009) dataset yang digunakan tidak seimbang dapat menyebabkan model yang dihasilkan cenderung memprediksi kelas mayoritas. Hal ini menyebabkan akurasi yang dihasilkan lebih rendah dari yang diharapkan.
+
+
+
 
 
 \section{Pembahasan Hasil Pengujian}
