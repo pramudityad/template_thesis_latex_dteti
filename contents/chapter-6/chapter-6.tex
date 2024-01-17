@@ -9,22 +9,24 @@ Hasil pengujian kinerja sistem berisi hasil pengujian terhadap kinerja sistem. P
 
 \subsubsection{Waktu Data Training}
 Hasil pengujian waktu data training berisi hasil pengujian terhadap waktu yang dibutuhkan oleh sistem untuk melakukan proses data training. Pengujian ini dilakukan dengan cara membandingkan waktu yang dibutuhkan oleh sistem untuk melakukan proses data training.
-Dalam pengujian ini, dilakukkan pengujian untuk beberapa ukuran dataset. Ukuran dataset yang digunakan adalah 10000, 20000, 30000 dan 40000. 
+Dalam pengujian ini, dilakukkan pengujian untuk beberapa ukuran dataset. Ukuran dataset yang digunakan adalah 10000, 20000, 30000, 40000 dan 50000. 
 Berikut adalah hasil pengujian waktu data training.
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|c|c|}
     \hline
     \textbf{Ukuran Dataset} & \textbf{Waktu Data Training (detik)} \\
     \hline
-    10000 & 0.001 \\
+    10000 & 453 \\
     \hline
-    20000 & 0.002 \\
+    20000 & 901 \\
     \hline
-    30000 & 0.003 \\
+    30000 & 1937 \\
     \hline
-    40000 & 0.004 \\
+    40000 & 2237 \\
+    \hline
+    50000 & error \\
     \hline
     \end{tabular}
     \caption{Hasil Pengujian Waktu Data Training}
@@ -35,9 +37,24 @@ Berikut adalah hasil pengujian waktu data training.
 \subsubsection{Penggunaan Memori dan CPU}
 Hasil pengujian penggunaan memori dan CPU berisi hasil pengujian terhadap penggunaan memori dan CPU oleh sistem. Pengujian ini dilakukan dengan cara membandingkan penggunaan memori dan CPU.
 
-\subsection{Keamanan Sistem}
-Hasil pengujian keamanan sistem berisi hasil pengujian terhadap keamanan sistem. Pengujian ini dilakukan dengan cara mencoba melakukan serangan terhadap sistem berdasarkan dataset.
-Setelah itu dibandingkan dengan hasil yang diharapkan. Apabila hasil yang didapatkan sesuai dengan hasil yang diharapkan, maka sistem dapat dikatakan aman. Sebaliknya, apabila hasil yang didapatkan tidak sesuai dengan hasil yang diharapkan, maka sistem dapat dikatakan tidak aman.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Ukuran Dataset} & \textbf{Penggunaan CPU (\%)} & \textbf{Memory Usage (MB)} \\
+    \hline
+    10000 & 5 & 600 \\
+    \hline
+    20000 & 9,2 & 701 \\
+    \hline
+    30000 & 14 & 722 \\
+    \hline
+    40000 & 18,5 & 729 \\
+    \hline
+    \end{tabular}
+    \caption{Hasil Pengujian Penggunaan CPU dan Memory Data Training}
+    \label{table:1}
+\end{table}
 
 
 \subsection{Performa Sistem}
@@ -62,10 +79,10 @@ Dalam percobaan ini dipilih 4 parameter yang akan dioptimasi, yaitu: max\_depth,
     \hline
     \end{tabular}
     \caption{Parameter Grid}
-    \label{table:2}
+    \label{table:param_grid}
     \end{table}
 
-Pada tabel 6.1 ditunjukkan hasil pengujian random forest dengan menggunakan beberapa parameter yang berbeda. Pada tabel 6.2 ditunjukkan sampel hasil pengujian random forest dengan menggunakan parameter yang telah dioptimasi.
+Pada Tabel \ref{table:param_grid} ditunjukkan hasil pengujian random forest dengan menggunakan beberapa parameter yang berbeda. Pada tabel \ref{table:sampel_hasil_pengujian_random_forest} ditunjukkan sampel hasil pengujian random forest dengan menggunakan parameter yang telah dioptimasi.
 
 
 \begin{table}[h]
@@ -86,12 +103,19 @@ Pada tabel 6.1 ditunjukkan hasil pengujian random forest dengan menggunakan bebe
     \label{table:sampel_hasil_pengujian_random_forest}
 \end{table}
 
-Tabel 6.2 adalah hasil pengujian random forest dengan menggunakan parameter yang telah dioptimasi. Ditemukan bahwa parameter yang menghasilkan performa terbaik adalah \{'max\_depth': None, 'min\_samples\_leaf': 2, 'min\_samples\_split': 2, 'n\_estimators': 200\} dengan akurasi 0.708, presisi 0.701, recall 0.968, dan F1 score 0.813.
+Tabel \ref{table:sampel_hasil_pengujian_random_forest} adalah hasil pengujian random forest dengan menggunakan parameter yang telah dioptimasi. Ditemukan bahwa parameter yang menghasilkan performa terbaik adalah \{'max\_depth': None, 'min\_samples\_leaf': 2, 'min\_samples\_split': 2, 'n\_estimators': 200\} dengan akurasi 0.708, presisi 0.701, recall 0.968, dan F1 score 0.813.
 
 \section{Analisis Hasil Pengujian}
 Analisis hasil pengujian berisi analisis terhadap hasil pengujian yang telah dilakukan. Analisis dilakukan dengan membandingkan hasil pengujian dengan spesifikasi kebutuhan yang telah ditetapkan sebelumnya. Apabila hasil pengujian sesuai dengan spesifikasi kebutuhan, maka sistem dapat dikatakan berhasil. Sebaliknya, apabila hasil pengujian tidak sesuai dengan spesifikasi kebutuhan, maka sistem dapat dikatakan gagal.
 Dalam melakukan analisis hasil pengujian, dapat digunakan beberapa metode, yaitu:
 Confusion Matrix: Implementasi confusion matrix membantu memahami sejauh mana model dapat mengidentifikasi True Positives (mesin yang diakui dengan benar), True Negatives (mesin yang ditolak dengan benar), False Positives (mesin yang salah diakui), dan False Negatives (mesin yang salah ditolak).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{contents/chapter-6/confusion_matrix.png}
+    \caption{Confusion Matrix}
+    \label{fig:confusion_matrix}
+\end{figure}
 
 \begin{table}[H]
     \centering
