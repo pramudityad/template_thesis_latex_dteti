@@ -106,7 +106,7 @@
 %======================================
 \iftoggle{lang}{
 	% define new commands in bahasa
-	\newcommand{\listappendixname}{DAFTAR LAMPIRAN}%
+	% \newcommand{\listappendixname}{DAFTAR LAMPIRAN}%
 	\newcommand{\nomenclaturename}{DAFTAR SINGKATAN}%
 	\newcommand{\acknowledgmentname}{HALAMAN PERSEMBAHAN}%
 	\newcommand{\approvalpage}{HALAMAN PENGESAHAN}
@@ -136,7 +136,7 @@
 	\renewcommand{\abstractname}{INTISARI}%
 	\renewcommand{\partname}{BAGIAN}%
 	\renewcommand{\chaptername}{BAB}%
-	\renewcommand{\appendixname}{LAMPIRAN}%
+	% \renewcommand{\appendixname}{LAMPIRAN}%
 	\renewcommand{\refname}{DAFTAR PUSTAKA}%
 	\renewcommand{\bibname}{DAFTAR PUSTAKA}%
 	\renewcommand{\indexname}{Indek}%
@@ -871,7 +871,7 @@
 	\renewcommand\thesubsection {L.\@arabic\c@section.\@arabic\c@subsection}
 	
 	% Add to TOC
-    \addcontentsline{toc}{chapter}{LAMPIRAN}	
+    % \addcontentsline{toc}{chapter}{LAMPIRAN}	
 	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
 	%\addcontentsline{toc}{chapter}{\protect\setcounter{tocdepth}{1}\protect\appendixname}
 	%\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
