@@ -13,10 +13,16 @@ Analisis sistem terdiri dari gambaran umum sistem yang dapat dilihat pada baguan
 \end{figure}
 Gambar \ref{fig:gambaran-umum} menjelaskan secara umum system bekerja dengan menggunakan metadata login sebagai input untuk mengidentifikasi risiko dari suatu transaksi. Metadata login ini kemudian diolah dan dianalisis menggunakan metode Random Forest untuk menghasilkan prediksi risiko autentikasi dengan output nya adalah klasifikasi.
 
+Data login menggunakan dataset yang disintesis dari lebih dari 33 juta upaya login dan sekitar 3,3 juta pengguna pada layanan online skala besar di Norwegia. Data asli dikumpulkan antara Februari 2020 dan Februari 2021.
+
+Setelah itu dataset akan digunakan untuk proses pembuatan model klasi random forest, proses pembuatan model akan melewati tiga tahap yaitu : \textit{preprocessing}, \textit{train model}
+dan prediksi dataset
+
+
 \subsection{Analisis Kebutuhan Sistem}
 Dalam membangun sistem ini, diperlukan analisa kebutuhan fungsional dan non-fungsional. Kebutuhan fungsional adalah kebutuhan yang berkaitan dengan fungsi-fungsi yang harus ada dalam sistem. Kebutuhan non-fungsional adalah kebutuhan yang berkaitan dengan kualitas sistem yang dibangun. Kebutuhan fungsional dan non-fungsional dapat dilihat pada bagian 4.1 dan Tabel 4.2.
 
-\subsubsection{Kebutuhan Fungsional}
+\subsection{Kebutuhan Fungsional}
 Kebutuhan fungsional sistem ini adalah sebagai berikut:
 \begin{enumerate}
     \item Sistem dapat melakukan analisis risiko autentikasi dengan menggunakan metode Random Forest.
@@ -24,10 +30,25 @@ Kebutuhan fungsional sistem ini adalah sebagai berikut:
     \item Sistem risiko autentikasi dapat terintegrasi dengan sistem FHIR.
 \end{enumerate}
 
-\subsubsection{Kebutuhan Non-Fungsional}
-Kebutuhan non-fungsional sistem ini adalah sebagai berikut:
+\subsection{Kebutuhan Non-Fungsional}
+Analisis kebutuhan non fungsional dibagi menjadi dua, yaitu analisis
+kebutuhan perangkat lunak dan analisis kebutuhan perangkat keras. Analisis
+perangkat keras bertujuan untuk memudahkan proses perancangan dan
+implementasi dalam pembangunan sistem ini.
+
+\subsubsection{Analisis Kebutuhan Perangkat Lunak}
+
 \begin{enumerate}
-    \item Keamanan data : Sistem dapat melindungi data dari akses yang tidak sah.
+    \item Bahasa pemrograman python versi 3.9 dengan anaconda 3
+    \item Framework flask untuk membuat endpoint 
+    \item Sistem operasi dengan base unix untuk menjalankan sistem klasifikasi
+\end{enumerate}
+
+\subsubsection{Analisis Kebutuhan Perangkat Keras}
+\begin{enumerate}
+    \item Laptop atau PC dengan RAM minimal 8gb
+    \item Prosessor dengan minimum 5 CPU Core 
+    \item 
 \end{enumerate}
 
 \section{Rancangan Sistem}
