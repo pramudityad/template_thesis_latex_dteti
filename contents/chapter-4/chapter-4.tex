@@ -48,14 +48,14 @@ implementasi dalam pembangunan sistem ini.
 \begin{enumerate}
     \item Laptop atau PC dengan RAM minimal 8gb
     \item Prosessor dengan minimum 5 CPU Core 
-    \item 
+    \item \textit{Storage} dengan minimum 50gb
 \end{enumerate}
 
 \section{Rancangan Sistem}
 Berikut adalah rancangan sistem yang akan dibangun. Rancangan sistem terdiri dari rancangan arsitektur sistem, rancangan pembersihan data, rancangan variabel kepentingan, dan rancangan integrasi dengan sistem FHIR.
 
 \subsection{Rancangan Arsitektur Sistem}
-Rancangan arsitektur sistem dapat dilihat pada Gambar 4.3. Sistem ini terdiri dari 3 komponen utama yaitu komponen \textit{data preprocessing}, komponen \textit{data mining}, dan komponen \textit{data integration}. Komponen \textit{data preprocessing} berfungsi untuk membersihkan data dari \textit{noise} dan \textit{outlier}. Komponen \textit{data mining} berfungsi untuk melakukan analisis risiko autentikasi dengan menggunakan metode Random Forest. Komponen \textit{data integration} berfungsi untuk mengintegrasikan sistem dengan sistem FHIR.
+Rancangan arsitektur sistem dapat dilihat pada Gambar \ref{fig:arsitektur-sistem}. Sistem ini terdiri dari 3 komponen utama yaitu komponen \textit{data preprocessing}, komponen \textit{data mining}, dan komponen \textit{data integration}. Komponen \textit{data preprocessing} berfungsi untuk membersihkan data dari \textit{noise} dan \textit{outlier}. Komponen \textit{data mining} berfungsi untuk melakukan analisis risiko autentikasi dengan menggunakan metode Random Forest. Komponen \textit{data integration} berfungsi untuk mengintegrasikan sistem dengan sistem FHIR.
 
 \begin{figure}[H]
     \centering
@@ -63,6 +63,12 @@ Rancangan arsitektur sistem dapat dilihat pada Gambar 4.3. Sistem ini terdiri da
     \caption{Rancangan Arsitektur Sistem}
     \label{fig:arsitektur-sistem}
 \end{figure}
+
+Pada Gambar \ref{fig:arsitektur-sistem}, sistem ini akan mendapatkan data login dari datasest. Data login ini kemudian akan digunakan sebagai input untuk melakukan analisis risiko autentikasi.
+
+Dalam menentukan risiko autentikasi, sistem ini akan menggunakan metode Random Forest. Metode Random Forest akan menghasilkan variabel kepentingan yang dapat digunakan untuk melakukan analisis risiko autentikasi.
+
+Setelah itu, sistem ini akan terintegrasi dengan sistem FHIR. Sistem ini akan menggunakan FHIR API untuk mengakses data dari sistem FHIR. FHIR API akan mengakses data dari sistem FHIR dengan menggunakan \textit{request} dan \textit{response}.
 
 \subsection{Rancangan Pembersihan Data}
 Rancangan pembersihan data dapat dilihat pada Gambar \ref{fig:pembersihan-data} Pada tahap ini, data akan dibersihkan dari \textit{noise} dan \textit{outlier}. \textit{Noise} adalah data yang tidak memiliki nilai yang berarti. \textit{Outlier} adalah data yang memiliki nilai yang ekstrim. Pada tahap ini, data akan dibersihkan dari \textit{noise} dan \textit{outlier} dengan menggunakan beberapa metode yaitu :
@@ -74,11 +80,13 @@ Rancangan pembersihan data dapat dilihat pada Gambar \ref{fig:pembersihan-data} 
     \label{fig:pembersihan-data}
 \end{figure}
 
+Dalam melakukan pembersihan data, sistem ini akan satu metode yaitu :
+
 \begin{enumerate}
-    \item \textit{Outlier} : Menghapus data yang memiliki nilai yang ekstrim.
-    \item \textit{Noise} : Menghapus data yang tidak memiliki nilai yang berarti.
     \item \textit{Missing Value} : Menghapus data yang memiliki nilai kosong.
 \end{enumerate}
+
+Setelah data dibersihkan, data akan digunakan sebagai input untuk melakukan analisis risiko autentikasi. Data ini kemudian akan digunakan sebagai input untuk melakukan analisis risiko autentikasi.
 
 \subsection{Rancangan Variabel Kepentingan}
 Rancangan variabel kepentingan akan dilakukan dengan menggunakan metode Random Forest. Metode Random Forest akan menghasilkan variabel kepentingan yang dapat dilihat pada Gambar \ref{fig:variabel-kepentingan}. Variabel kepentingan ini akan digunakan untuk melakukan analisis risiko autentikasi.
@@ -89,6 +97,8 @@ Berikut adalah rancangan variabel kepentingan yang akan digunakan untuk melakuka
     \caption{Rancangan Variabel Kepentingan}
     \label{fig:variabel-kepentingan}
 \end{figure}
+
+Gambar \ref{fig:variabel-kepentingan} menjelaskan bahwa variabel kepentingan akan digunakan untuk melakukan analisis risiko autentikasi. Variabel kepentingan ini akan digunakan sebagai input untuk melakukan analisis risiko autentikasi.
 
 \subsection{Rancangan Integrasi Dengan Sistem FHIR}
 Rancangan integrasi dengan sistem FHIR dapat dilihat pada Gambar 4.6. Sistem ini akan terintegrasi dengan sistem FHIR untuk mendapatkan data login dari pasien. Data login ini kemudian akan digunakan sebagai input untuk melakukan analisis risiko autentikasi.
@@ -105,7 +115,5 @@ Untuk melakukan integrasi dengan sistem FHIR, sistem ini akan menggunakan FHIR A
 Pengujian sistem ini akan dilakukan dengan menggunakan beberapa metode yaitu:
 \begin{enumerate}
     \item Pengujian Fungsional : Pengujian fungsional dilakukan untuk menguji apakah sistem dapat berjalan dengan baik sesuai dengan kebutuhan fungsional yang telah ditentukan.
-    \item Pengujian Non-Fungsional : Pengujian non-fungsional dilakukan untuk menguji apakah sistem dapat berjalan dengan baik sesuai dengan kebutuhan non-fungsional yang telah ditentukan.
-    \item Pengujian Eksperimental : Pengujian eksperimental dilakukan untuk menguji apakah sistem dapat berjalan dengan baik sesuai dengan kebutuhan eksperimental yang telah ditentukan.
     \item Menentukan Evaluasi : Akurasi, Presisi, \textit{Recall}, \textit{F1 Score}, dan \textit{Confusion Matrix} akan digunakan untuk menentukan evaluasi dari sistem.
 \end{enumerate}

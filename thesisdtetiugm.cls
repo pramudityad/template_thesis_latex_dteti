@@ -68,6 +68,10 @@
 % \usepackage{cite}
 \usepackage{natbib}
 \usepackage{float}
+% this package is used to force table caption on top
+\floatstyle{plaintop}
+\restylefloat{table}
+% 
 \usepackage{multirow}
 \usepackage{titlesec}
 \usepackage{ragged2e}% text alignment
