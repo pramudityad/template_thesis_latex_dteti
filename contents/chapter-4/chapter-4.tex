@@ -80,12 +80,15 @@ Rancangan pembersihan data dapat dilihat pada Gambar \ref{fig:pembersihan-data} 
     \label{fig:pembersihan-data}
 \end{figure}
 
-Dalam melakukan pembersihan data, sistem ini akan satu metode yaitu :
+Dalam melakukan pembersihan data, sistem ini akan dua metode yaitu :
 
 \begin{enumerate}
     \item \textit{Missing Value} : Menghapus data yang memiliki nilai kosong.
+    \item \textit{Duplicate Elimination} : Menghapus duplikasi data sehingga hanya satu dari data duplikat yang disimpan. 
 \end{enumerate}
 
+Pembersihan tahap satu dapat dilakukkan menggunakan fitur pandas yaitu isnull. Setelah itu didapatkan jumlahnya dengan sum. Dengan cara ini didapatkan jumlah data kosong untuk setiap fitur. Untuk fitur yang terdapat nilai kosong akan dibuang
+Pembersihan tahap dua dilakukkan dengan cara menyaring fitur \textit{User Agent and Device Type} 
 Setelah data dibersihkan, data akan digunakan sebagai input untuk melakukan analisis risiko autentikasi. Data ini kemudian akan digunakan sebagai input untuk melakukan analisis risiko autentikasi.
 
 \subsection{Rancangan Variabel Kepentingan}
@@ -99,6 +102,8 @@ Berikut adalah rancangan variabel kepentingan yang akan digunakan untuk melakuka
 \end{figure}
 
 Gambar \ref{fig:variabel-kepentingan} menjelaskan bahwa variabel kepentingan akan digunakan untuk melakukan analisis risiko autentikasi. Variabel kepentingan ini akan digunakan sebagai input untuk melakukan analisis risiko autentikasi.
+
+Setelah data berhasil di-import akan diakukan penghitungan kategorikal dan numerikal data 
 
 \subsection{Rancangan Integrasi Dengan Sistem FHIR}
 Rancangan integrasi dengan sistem FHIR dapat dilihat pada Gambar 4.6. Sistem ini akan terintegrasi dengan sistem FHIR untuk mendapatkan data login dari pasien. Data login ini kemudian akan digunakan sebagai input untuk melakukan analisis risiko autentikasi.
